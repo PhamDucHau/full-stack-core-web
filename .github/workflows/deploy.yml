@@ -50,7 +50,7 @@ jobs:
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USERNAME }}
+          username: root
           password: ${{ secrets.VPS_PASSWORD }}
           script: |
             docker pull haupham2311/be-core-web-cms:latest
@@ -58,7 +58,7 @@ jobs:
             docker rm be-core-web-cms || true
             docker run -d --name be-core-web-cms --restart unless-stopped -p 3066:3000 \
               -e MONGODB_URI="${{ secrets.MONGODB_URI }}" \
-              -e JWT_SECRET="${{ secrets.JWT_SECRET }}" \              
+              -e JWT_SECRET="${{ secrets.JWT_SECRET }}" \
               haupham2311/be-core-web-cms:latest
 
             docker pull haupham2311/fe-core-web-cms:latest
