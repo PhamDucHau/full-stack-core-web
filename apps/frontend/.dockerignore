@@ -1,0 +1,11 @@
+node_modules
+.next
+.git
+.env
+.env.*
+*.md
+*.log
+.eslintrc*
+.prettierrc*
+Dockerfile
+.dockerignore

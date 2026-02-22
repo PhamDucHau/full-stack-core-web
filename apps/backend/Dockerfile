@@ -1,26 +1,40 @@
-# Sử dụng Node.js base image
-FROM node:20 AS build
+# Build stage
+FROM node:20-alpine AS builder
 
-# Thiết lập thư mục làm việc trong container
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy package.json và package-lock.json vào container
-COPY package*.json ./
+# Tránh yarn dùng /tmp (dễ gây EIO trong Docker), dùng thư mục trong /app
+ENV TMPDIR=/app/.tmp
+ENV YARN_CACHE_FOLDER=/app/.yarn-cache
+RUN mkdir -p .tmp .yarn-cache
 
-# Cài đặt dependencies
-RUN yarn install
+# Copy package files
+COPY package.json yarn.lock* package-lock.json* ./
 
-# Copy toàn bộ code của ứng dụng vào container
+# Install dependencies
+RUN if [ -f yarn.lock ]; then yarn install --frozen-lockfile; else npm ci; fi
+
 COPY . .
 
-# Tăng heap memory limit cho Node.js để tránh lỗi out of memory khi build
-ENV NODE_OPTIONS=--max-old-space-size=4096
+# Build NestJS
+RUN yarn build || npm run build
 
-# Build ứng dụng NestJS
-RUN yarn run build
+# Production stage
+FROM node:20-alpine AS production
 
-# Expose port 3000 để có thể truy cập từ bên ngoài
+WORKDIR /app
+
+ENV TMPDIR=/app/.tmp
+ENV YARN_CACHE_FOLDER=/app/.yarn-cache
+RUN mkdir -p .tmp .yarn-cache
+
+# Copy package files and install production deps only
+COPY package.json yarn.lock* package-lock.json* ./
+RUN if [ -f yarn.lock ]; then yarn install --frozen-lockfile --production; else npm ci --omit=dev; fi
+
+# Copy built output from builder
+COPY --from=builder /app/dist ./dist
+
 EXPOSE 3000
 
-# Khởi chạy ứng dụng
-CMD ["yarn", "run", "start:prod"]
+CMD ["node", "dist/src/main.js"]
