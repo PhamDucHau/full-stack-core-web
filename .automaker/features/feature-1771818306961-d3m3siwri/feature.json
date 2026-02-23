@@ -1,0 +1,38 @@
+{
+  "category": "Uncategorized",
+  "description": "Tôi đang gặp tình trạng chữ của button khoanh đỏ đang màu trắng nên sẽ không thấy chữ, đổi text button sang màu đen giúp tôi\napps/Frontend website trang home",
+  "title": "Chỉnh lại color text banner home website front end",
+  "images": [],
+  "imagePaths": [
+    {
+      "id": "img-1771818208854-vcpnefjcf",
+      "path": "/projects/full-stack-core-web/.automaker/features/feature-1771818306961-d3m3siwri/images/pasted-image-2026-02-23T03-43-27-988Z-1771818208791.png",
+      "filename": "pasted-image-2026-02-23T03-43-27-988Z.png",
+      "mimeType": "image/png"
+    }
+  ],
+  "textFilePaths": [],
+  "skipTests": true,
+  "model": "opus",
+  "thinkingLevel": "none",
+  "reasoningEffort": "none",
+  "branchName": null,
+  "priority": 2,
+  "planningMode": "skip",
+  "requirePlanApproval": false,
+  "dependencies": [],
+  "workMode": "custom",
+  "titleGenerating": false,
+  "status": "completed",
+  "id": "feature-1771818306961-d3m3siwri",
+  "descriptionHistory": [
+    {
+      "description": "Tôi đang gặp tình trạng chữ của button khoanh đỏ đang màu trắng nên sẽ không thấy chữ, đổi text button sang màu đen giúp tôi\napps/Frontend website trang home",
+      "timestamp": "2026-02-23T03:45:07.082Z",
+      "source": "initial"
+    }
+  ],
+  "startedAt": "2026-02-23T03:45:08.814Z",
+  "updatedAt": "2026-02-23T03:46:05.522Z",
+  "justFinishedAt": "2026-02-23T03:46:05.522Z"
+}
