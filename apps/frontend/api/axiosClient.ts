@@ -20,8 +20,8 @@ export const removeStoredToken = (): void => {
 };
 
 const axiosClient = axios.create({
-  // baseURL: "http://103.82.38.96:3066",
-  baseURL: "http://localhost:3000",
+  baseURL: "http://103.82.38.96:3066",
+  // baseURL: "http://localhost:3000",
   headers: {
     "Content-Type": "application/json",
   },
