@@ -1,46 +1,30 @@
-# Build stage
-FROM node:20-alpine AS builder
+# --- Stage 1: Build app ---
+FROM node:20 AS build
 
 WORKDIR /app
 
-# Install pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+# Copy dependency files
+COPY package.json ./
 
-COPY package.json pnpm-lock.yaml* ./
+# Cài dependency qua Yarn (giữ nguyên phiên bản)
+RUN yarn install --frozen-lockfile
 
-# Install dependencies
-RUN pnpm install --frozen-lockfile
-
+# Copy toàn bộ project
 COPY . .
 
-# Build Next.js (output: standalone) - NEXT_PUBLIC_API_URL có thể truyền qua --build-arg trong CI
-ARG NEXT_PUBLIC_API_URL
-ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
-ENV NEXT_TELEMETRY_DISABLED=1
-RUN pnpm build
+# Build production
+RUN yarn build
 
-# Production stage
-FROM node:20-alpine AS production
+
+# --- Stage 2: Production runtime ---
+FROM node:20 AS production
 
 WORKDIR /app
 
+# Chỉ copy output đã build (giảm dung lượng)
+COPY --from=build /app ./
+
 ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED=1
-
-# Create non-root user
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-# Copy standalone output
-COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-USER nextjs
-
 EXPOSE 3000
 
-ENV PORT=3000
-ENV HOSTNAME="0.0.0.0"
-
-CMD ["node", "server.js"]
+CMD ["yarn", "start"]

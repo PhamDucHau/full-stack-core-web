@@ -3,12 +3,12 @@
 import * as React from "react"
 import {
   IconCamera,
-  IconChartBar, IconCircle,
+  IconChartBar,
+  IconCircle,
   IconDashboard,
   IconFileAi,
   IconFileDescription,
   IconFolder,
-  IconInnerShadowTop,
   IconListDetails,
   IconUsers
 } from "@tabler/icons-react";
@@ -138,7 +138,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" forceDesktop {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
