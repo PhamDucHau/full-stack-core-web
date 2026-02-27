@@ -10,7 +10,7 @@ import { CreateBlogDto } from './dto/create-blog.dto';
 import { UpdateBlogDto } from './dto/update-blog.dto';
 import { QueryBlogDto } from './dto/query-blog.dto';
 
-interface PaginationResult {
+export interface PaginationResult {
   data: Blog[];
   pagination: {
     total: number;

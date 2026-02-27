@@ -10,7 +10,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { BlogService } from './blog.service';
+import { BlogService, PaginationResult } from './blog.service';
 import { CreateBlogDto } from './dto/create-blog.dto';
 import { UpdateBlogDto } from './dto/update-blog.dto';
 import { QueryBlogDto } from './dto/query-blog.dto';
@@ -29,7 +29,7 @@ export class BlogController {
    */
   @Get()
   @UsePipes(new ValidationPipe({ transform: true }))
-  async getAllBlogs(@Query() query: QueryBlogDto) {
+  async getAllBlogs(@Query() query: QueryBlogDto): Promise<PaginationResult> {
     return this.blogService.findAll(query);
   }
 
