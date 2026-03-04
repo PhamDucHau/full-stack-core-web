@@ -5,9 +5,9 @@ relevantTo: [error, bug, fix, issue, problem]
 importance: 0.9
 relatedFiles: []
 usageStats:
-  loaded: 6
-  referenced: 1
-  successfulFeatures: 1
+  loaded: 8
+  referenced: 3
+  successfulFeatures: 3
 ---
 # Gotchas
 
@@ -26,3 +26,8 @@ Mistakes and edge cases to avoid. These are lessons learned from past issues.
 - **Situation:** The typo 'Partss' existed in LandingNav.tsx line 37 where the brand name was split across a styled span and plain text
 - **Root cause:** When text is fragmented across JSX elements with different styling, the cognitive burden of reading the full text is distributed, making typos harder to catch in code review and visual inspection
 - **How to avoid:** Splitting styled text provides better control over component styling but increases the cognitive load for identifying text-based issues
+
+#### [Gotcha] Code state vs visual state mismatch - file already contained 'Car Partss' with double 's', but the visual reference image showed 'Car Parts' with single 's' (2026-03-04)
+- **Situation:** Task requested changing 'Car Parts' to 'Car Partss', but code inspection revealed the change was already implemented while the reference image suggested otherwise
+- **Root cause:** This indicates a disconnect between the current codebase state and documentation/screenshots used to communicate requirements. The image may have been from an older version or the change was made prior to task assignment
+- **How to avoid:** Required careful verification with grep patterns before taking action; prevented unnecessary edits but added investigation overhead

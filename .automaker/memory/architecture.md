@@ -25,3 +25,10 @@ usageStats:
 - **Problem solved:** To fix a single typo with confidence, multiple verification layers were applied before and after the change
 - **Why this works:** A single-pass fix without verification could mask the actual location of the typo, introduce new issues during editing, or leave related instances unfixed. Multiple verifications provide defense in depth
 - **Trade-offs:** Multi-step verification takes more time and tool invocations but significantly reduces the chance of incomplete or incorrect fixes being committed
+
+### Brand name duplication across multiple files instead of centralized constant (2026-03-04)
+- **Context:** After change, 'Car Parts'/'Car Partss' exists in LandingNav.tsx, LandingFooter.tsx, and page.tsx with different contexts (navigation, footer, page title)
+- **Why:** Each location has different styling/context needs, but root cause is lack of design system or constants file for brand strings
+- **Rejected:** Could create brands.constants.ts or move to environment config, but would require refactoring multiple components
+- **Trade-offs:** Component independence and inline readability gained, but single source of truth lost - next rebranding requires 3+ manual edits and testing
+- **Breaking if changed:** If brand name needs to change again, missing any single location breaks brand consistency across the site. No CI check exists to catch this.

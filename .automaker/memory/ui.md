@@ -57,3 +57,13 @@ usageStats:
 - **Problem solved:** Finding and modifying a specific text string in a frontend component
 - **Why this works:** Methodical approach: search → locate → read → verify → edit → verify again reduces risk of modifying wrong content
 - **Trade-offs:** Multiple tool calls add latency but provide confidence and auditability; single-step approach would be faster but riskier
+
+#### [Gotcha] Text split across JSX elements with className styling creates inconsistent branding across components (2026-03-04)
+- **Situation:** Logo text 'Car' is wrapped in <span className="text-primary"> while 'Parts' is plain text, then same text appears elsewhere (footer, page title) without this styling inconsistency
+- **Root cause:** The partial styling of 'Car' in primary color suggests intentional design, but creates maintenance burden when same text needs updating in multiple files with different formatting
+- **How to avoid:** Styling flexibility gained (only 'Car' in primary color) vs maintainability cost (text updates must be made in 3+ places with different formats)
+
+#### [Pattern] Inconsistent branding string across multiple components - 'Car Parts' vs 'Car Partss' appears in multiple locations (navigation, footer, page title) but selective updates suggest intentional variation (2026-03-04)
+- **Problem solved:** Investigation found the string scattered across LandingNav.tsx, LandingFooter.tsx, and page.tsx with only header updated to 'Partss'
+- **Why this works:** The selective update pattern (header only) suggests this may be a deliberate branding choice limited to primary navigation rather than a global find-replace operation
+- **Trade-offs:** Maintaining consistency requires manual verification across multiple locations, but allows targeted updates where needed without affecting other branding touchpoints
