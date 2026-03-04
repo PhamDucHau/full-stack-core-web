@@ -30,3 +30,15 @@ usageStats:
 - **Situation:** Attempted to create and run Playwright tests to verify the UI text change, but browser installation failed due to missing system libraries
 - **Root cause:** Playwright requires the full browser runtime stack including system-level graphics and C libraries, which may not be available in minimal CI/CD or development environments
 - **How to avoid:** Static code verification is faster and more reliable in constrained environments but provides less assurance about actual UI rendering compared to browser-based tests
+
+#### [Gotcha] Playwright browser tests require system-level dependencies (libglib-2.0.so.0) that may not be available in all environments, causing test execution to fail even when Playwright is installed via npm (2026-03-04)
+- **Situation:** Attempted to create and run Playwright E2E tests to verify UI text changes in a sandboxed/containerized environment
+- **Root cause:** Playwright requires headless browser binaries which depend on system libraries. The npm package alone is insufficient - chromium/firefox binaries need OS-level dependencies
+- **How to avoid:** Visual verification through browser tests is ideal for UI changes but adds environment complexity; file inspection + build verification is faster for simple text changes but provides less confidence in actual rendering
+
+### Fallback to build verification instead of E2E tests when Playwright environment is unavailable, using successful compilation as a proxy for correctness (2026-03-04)
+- **Context:** Needed to verify a simple text change in a banner component when full browser testing wasn't feasible
+- **Why:** Build success guarantees TypeScript compilation passed and component syntax is valid; for straightforward text replacements, this is sufficient to catch structural issues, and file inspection confirms the text change
+- **Rejected:** Skipping verification entirely; pursuing complex Playwright setup in incompatible environment
+- **Trade-offs:** Build verification is fast and works in any environment but doesn't catch runtime issues, CSS problems, or incorrect rendering; full E2E tests catch more issues but require significant environment setup
+- **Breaking if changed:** If component has syntax errors or TypeScript issues unrelated to the text change, build verification catches them; but rendering bugs (wrong element targeted, CSS hiding text) would be missed

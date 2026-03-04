@@ -11,7 +11,7 @@ export function HeroSection() {
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto">
           <p className="text-sm font-medium text-slate-300 uppercase tracking-wider mb-4">
-            Quality Parts for Every Ride
+            Quality Parts
           </p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
             From engine components to braking systems

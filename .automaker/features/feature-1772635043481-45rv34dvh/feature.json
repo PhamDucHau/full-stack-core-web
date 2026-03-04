@@ -1,0 +1,36 @@
+{
+  "category": "Uncategorized",
+  "description": "Sửa 'Quality Parts for Every Ride' ở banner thành 'Quality Parts' ",
+  "title": "Sửa 'Quality Parts for Every Ride' ở banner thành 'Quality Parts' ",
+  "images": [],
+  "imagePaths": [
+    {
+      "id": "img-1772634996935-53upjvglf",
+      "path": "/projects/full-stack-core-web/.automaker/features/feature-1772635043481-45rv34dvh/images/pasted-image-2026-03-04T14-36-36-609Z-1772634996938.png",
+      "filename": "pasted-image-2026-03-04T14-36-36-609Z.png",
+      "mimeType": "image/png"
+    }
+  ],
+  "textFilePaths": [],
+  "skipTests": false,
+  "model": "opus",
+  "thinkingLevel": "none",
+  "reasoningEffort": "none",
+  "priority": 2,
+  "planningMode": "skip",
+  "requirePlanApproval": false,
+  "dependencies": [],
+  "workMode": "current",
+  "titleGenerating": false,
+  "status": "verified",
+  "id": "feature-1772635043481-45rv34dvh",
+  "descriptionHistory": [
+    {
+      "description": "Sửa 'Quality Parts for Every Ride' ở banner thành 'Quality Parts' ",
+      "timestamp": "2026-03-04T14:37:23.543Z",
+      "source": "initial"
+    }
+  ],
+  "startedAt": "2026-03-04T14:37:23.531Z",
+  "updatedAt": "2026-03-04T14:39:56.609Z"
+}
