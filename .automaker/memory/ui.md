@@ -67,3 +67,8 @@ usageStats:
 - **Problem solved:** Investigation found the string scattered across LandingNav.tsx, LandingFooter.tsx, and page.tsx with only header updated to 'Partss'
 - **Why this works:** The selective update pattern (header only) suggests this may be a deliberate branding choice limited to primary navigation rather than a global find-replace operation
 - **Trade-offs:** Maintaining consistency requires manual verification across multiple locations, but allows targeted updates where needed without affecting other branding touchpoints
+
+#### [Pattern] Banner text placed in JSX component as simple string literal rather than externalized to configuration or i18n system (2026-03-04)
+- **Problem solved:** Found 'Quality Parts' text hardcoded directly in HeroSection.tsx component
+- **Why this works:** For static, single-language UI text in marketing sections, inline strings reduce indirection and are simpler than i18n or config systems
+- **Trade-offs:** Simpler code structure but creates tight coupling between UI component and text content. Future changes require code modification

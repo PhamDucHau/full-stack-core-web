@@ -42,3 +42,20 @@ usageStats:
 - **Rejected:** Skipping verification entirely; pursuing complex Playwright setup in incompatible environment
 - **Trade-offs:** Build verification is fast and works in any environment but doesn't catch runtime issues, CSS problems, or incorrect rendering; full E2E tests catch more issues but require significant environment setup
 - **Breaking if changed:** If component has syntax errors or TypeScript issues unrelated to the text change, build verification catches them; but rendering bugs (wrong element targeted, CSS hiding text) would be missed
+
+#### [Gotcha] Playwright E2E tests require system dependencies (libglib-2.0.so.0) that may not be available in all environments, causing test execution to fail even when tests are syntactically correct (2026-03-04)
+- **Situation:** Attempted to create and run Playwright tests to verify UI text changes in a headless environment
+- **Root cause:** Playwright uses Chromium under the hood which requires system-level libraries. These aren't installed by default in minimal/containerized environments
+- **How to avoid:** E2E tests provide confidence in UI changes but add environmental setup burden. Manual browser verification or CI/CD environments with proper dependencies are more practical
+
+### Chose to verify changes through file reading and grep patterns rather than relying on failed E2E test infrastructure (2026-03-04)
+- **Context:** Playwright test execution failed due to missing system dependencies, needed alternative verification method
+- **Why:** Direct file inspection and grep are reliable, environment-agnostic, and provide immediate proof that text changes were applied correctly at the source level
+- **Rejected:** Could have forced Playwright setup or waited for proper test environment; instead chose pragmatic verification
+- **Trade-offs:** Direct file verification confirms code changes but doesn't verify runtime rendering or CSS application. Acceptable for simple text changes but insufficient for complex UI logic
+- **Breaking if changed:** If the banner text is only rendered through template processing or dynamic rendering at runtime, static file inspection wouldn't catch those issues
+
+#### [Gotcha] Playwright headless browser requires system libraries (libglib-2.0) not available in all CI/container environments (2026-03-04)
+- **Situation:** Attempted to run Playwright test to verify header change but browser failed to initialize due to missing system dependencies
+- **Root cause:** Playwright chromium needs glib and other system libraries for rendering; some container/CI images strip non-essential packages
+- **How to avoid:** Real browser testing is more accurate but fragile in limited environments; pure unit testing would be faster but wouldn't catch rendering issues

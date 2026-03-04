@@ -5,9 +5,9 @@ relevantTo: [error, bug, fix, issue, problem]
 importance: 0.9
 relatedFiles: []
 usageStats:
-  loaded: 9
-  referenced: 4
-  successfulFeatures: 4
+  loaded: 11
+  referenced: 6
+  successfulFeatures: 6
 ---
 # Gotchas
 
@@ -31,3 +31,8 @@ Mistakes and edge cases to avoid. These are lessons learned from past issues.
 - **Situation:** Task requested changing 'Car Parts' to 'Car Partss', but code inspection revealed the change was already implemented while the reference image suggested otherwise
 - **Root cause:** This indicates a disconnect between the current codebase state and documentation/screenshots used to communicate requirements. The image may have been from an older version or the change was made prior to task assignment
 - **How to avoid:** Required careful verification with grep patterns before taking action; prevented unnecessary edits but added investigation overhead
+
+#### [Gotcha] Text content split across JSX elements with className styling breaks string matching in tests (2026-03-04)
+- **Situation:** Header logo uses `<span className="text-primary">Car</span> Partss` - the word 'Car' is in a styled span while 'Partss' is plain text. This makes it impossible to match the full text with simple selectors.
+- **Root cause:** The implementation chose to style only part of the text (Car) differently, requiring test assertions to check each part separately or use whitespace-tolerant matching
+- **How to avoid:** Styling flexibility gained but test complexity increased; grepping source code works but runtime DOM testing requires whitespace normalization

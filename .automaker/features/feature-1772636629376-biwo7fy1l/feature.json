@@ -1,0 +1,36 @@
+{
+  "category": "Uncategorized",
+  "description": "Sửa Car Parts ở header menu thành 'Car Partsssss'",
+  "title": "Sửa Car Parts ở header menu thành 'Car Partsssss'",
+  "images": [],
+  "imagePaths": [
+    {
+      "id": "img-1772636623742-pfzy3t6un",
+      "path": "/projects/full-stack-core-web/.automaker/features/feature-1772636629376-biwo7fy1l/images/pasted-image-2026-03-04T15-03-43-387Z-1772636623746.png",
+      "filename": "pasted-image-2026-03-04T15-03-43-387Z.png",
+      "mimeType": "image/png"
+    }
+  ],
+  "textFilePaths": [],
+  "skipTests": false,
+  "model": "opus",
+  "thinkingLevel": "none",
+  "reasoningEffort": "none",
+  "priority": 2,
+  "planningMode": "skip",
+  "requirePlanApproval": false,
+  "dependencies": [],
+  "workMode": "current",
+  "titleGenerating": false,
+  "status": "verified",
+  "id": "feature-1772636629376-biwo7fy1l",
+  "descriptionHistory": [
+    {
+      "description": "Sửa Car Parts ở header menu thành 'Car Partsssss'",
+      "timestamp": "2026-03-04T15:03:49.439Z",
+      "source": "initial"
+    }
+  ],
+  "startedAt": "2026-03-04T15:03:49.444Z",
+  "updatedAt": "2026-03-04T15:07:06.956Z"
+}

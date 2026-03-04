@@ -32,3 +32,10 @@ usageStats:
 - **Rejected:** Could create brands.constants.ts or move to environment config, but would require refactoring multiple components
 - **Trade-offs:** Component independence and inline readability gained, but single source of truth lost - next rebranding requires 3+ manual edits and testing
 - **Breaking if changed:** If brand name needs to change again, missing any single location breaks brand consistency across the site. No CI check exists to catch this.
+
+### Text variations exist across different components (LandingNav, LandingFooter, page title) without centralized definition (2026-03-04)
+- **Context:** Header shows 'Car Partsssss', footer shows 'Car Parts', and page title shows 'Car Parts' - each location has its own hardcoded string
+- **Why:** Simple copy-paste implementation for isolated text changes; no shared constant or config required
+- **Rejected:** Could have extracted to a constant (SITE_NAME or BRAND_NAME) and referenced everywhere, but that adds indirection for a single change
+- **Trade-offs:** Easier initial change (edit one file) but harder maintenance (consistency issues, multiple places to update for brand changes)
+- **Breaking if changed:** Future brand name changes require updates in multiple files; no single source of truth means inconsistency risk
