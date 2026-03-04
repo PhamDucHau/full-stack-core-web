@@ -69,3 +69,8 @@ usageStats:
 - **Problem solved:** When Playwright couldn't run, verification shifted to checking that the literal string change existed in source and that the build succeeded
 - **Why this works:** Source code verification is environment-agnostic and catches syntax/import errors immediately. Build step validates compilation without requiring browser automation. Together they provide reasonable confidence for simple text changes
 - **Trade-offs:** Build verification catches compile errors and import issues but cannot detect rendering problems, CSS issues, or user interaction flow problems. Good for text changes, insufficient for layout or logic changes
+
+#### [Gotcha] Playwright browser testing requires system dependencies (libglib-2.0.so.0) that may not be available in sandboxed environments, making browser-based E2E tests fail silently (2026-03-04)
+- **Situation:** Attempted to create and run Playwright tests to verify the UI text fix but execution failed due to missing browser runtime dependencies
+- **Root cause:** Playwright needs to spawn actual browser instances which require system-level libraries. Sandboxed/minimal environments often strip these for security and size constraints
+- **How to avoid:** Had to fall back to source code verification (grep) instead of actual user-facing visual verification. Faster iteration but less confidence in actual UI rendering

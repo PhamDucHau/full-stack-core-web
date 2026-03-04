@@ -79,3 +79,8 @@ usageStats:
 - **Rejected:** Changing href to match shorter text (like '/#prod'), which would break existing bookmarks and shared links
 - **Trade-offs:** Shorter text is less descriptive but takes less space. Preserving href maintains backward compatibility at the cost of slight semantic mismatch between text and target
 - **Breaking if changed:** If any analytics, tracking, or link validation relies on text matching href, this creates a discrepancy. Any screenshots or documentation using old text will be outdated
+
+#### [Pattern] Text split across multiple JSX elements with className styling applied to only first part (<span className='text-primary'>Car</span> Parts) to achieve selective styling while keeping content in single semantic unit (2026-03-04)
+- **Problem solved:** Header brand name 'Car Parts' where only 'Car' should have primary color styling, requiring text to be split across elements
+- **Why this works:** React/JSX requires styling to be applied to elements, but only first word needs the color. Splitting the text allows applying className to only the relevant word without losing semantic meaning
+- **Trade-offs:** Slightly more verbose but provides explicit control. More readable than CSS-only selectors. Harder to refactor if branding text changes (need to update multiple places)

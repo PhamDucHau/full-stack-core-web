@@ -1,0 +1,37 @@
+{
+  "category": "Uncategorized",
+  "description": "Sửa text 'Car Partsssss' ở header thành 'Car Parts' giúp tôi",
+  "title": "Sửa text 'Car Partsssss' ở header thành 'Car Parts' giúp tôi",
+  "images": [],
+  "imagePaths": [
+    {
+      "id": "img-1772640870035-vo6bwsgsx",
+      "path": "/projects/full-stack-core-web/.automaker/features/feature-1772640881995-2vsb3c0mq/images/pasted-image-2026-03-04T16-14-29-817Z-1772640870100.png",
+      "filename": "pasted-image-2026-03-04T16-14-29-817Z.png",
+      "mimeType": "image/png"
+    }
+  ],
+  "textFilePaths": [],
+  "skipTests": false,
+  "model": "opus",
+  "thinkingLevel": "none",
+  "reasoningEffort": "none",
+  "branchName": "feature/main-1772640881605-607f",
+  "priority": 2,
+  "planningMode": "skip",
+  "requirePlanApproval": false,
+  "dependencies": [],
+  "workMode": "auto",
+  "titleGenerating": false,
+  "status": "verified",
+  "id": "feature-1772640881995-2vsb3c0mq",
+  "descriptionHistory": [
+    {
+      "description": "Sửa text 'Car Partsssss' ở header thành 'Car Parts' giúp tôi",
+      "timestamp": "2026-03-04T16:14:42.109Z",
+      "source": "initial"
+    }
+  ],
+  "startedAt": "2026-03-04T16:14:42.040Z",
+  "updatedAt": "2026-03-04T16:19:41.995Z"
+}

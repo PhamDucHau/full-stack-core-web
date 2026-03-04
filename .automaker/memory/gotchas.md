@@ -5,9 +5,9 @@ relevantTo: [error, bug, fix, issue, problem]
 importance: 0.9
 relatedFiles: []
 usageStats:
-  loaded: 12
-  referenced: 7
-  successfulFeatures: 7
+  loaded: 13
+  referenced: 8
+  successfulFeatures: 8
 ---
 # Gotchas
 
@@ -36,3 +36,8 @@ Mistakes and edge cases to avoid. These are lessons learned from past issues.
 - **Situation:** Header logo uses `<span className="text-primary">Car</span> Partss` - the word 'Car' is in a styled span while 'Partss' is plain text. This makes it impossible to match the full text with simple selectors.
 - **Root cause:** The implementation chose to style only part of the text (Car) differently, requiring test assertions to check each part separately or use whitespace-tolerant matching
 - **How to avoid:** Styling flexibility gained but test complexity increased; grepping source code works but runtime DOM testing requires whitespace normalization
+
+#### [Gotcha] Build cache (.next folder) retains old content after source file modification, potentially masking incomplete fixes or creating confusion about actual deployed state (2026-03-04)
+- **Situation:** After fixing source file, grep results still showed 'Partsssss' in .next build artifacts, creating false impression that fix didn't work
+- **Root cause:** Next.js and similar frameworks generate optimized production artifacts during build. These are cached and only regenerated on explicit builds, not on source changes
+- **How to avoid:** Source verification is immediate but gives false sense of security - actual verification requires running build pipeline. More reliable = slower feedback loop
