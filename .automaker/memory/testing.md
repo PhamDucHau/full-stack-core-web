@@ -25,3 +25,8 @@ usageStats:
 - **Situation:** Changing status from table cell dropdown invokes mutation that needs mocking
 - **Root cause:** Realistic pattern - mutations tied to UI components. Ensures status changes actually update server
 - **How to avoid:** Easier: Tests catch real issues. Harder: Need React Query mock setup, async test handling, loading states
+
+#### [Gotcha] Playwright end-to-end tests cannot be easily executed in resource-constrained environments (missing system dependencies like libglib-2.0.so.0), requiring fallback to static code verification (2026-03-04)
+- **Situation:** Attempted to create and run Playwright tests to verify the UI text change, but browser installation failed due to missing system libraries
+- **Root cause:** Playwright requires the full browser runtime stack including system-level graphics and C libraries, which may not be available in minimal CI/CD or development environments
+- **How to avoid:** Static code verification is faster and more reliable in constrained environments but provides less assurance about actual UI rendering compared to browser-based tests

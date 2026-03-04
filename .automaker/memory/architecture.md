@@ -20,3 +20,8 @@ usageStats:
 - **Situation:** The change converts valid English text to misspelled text without any context explaining why
 - **Root cause:** The implementation followed the literal instruction without questioning the semantic validity of the change
 - **How to avoid:** Strict instruction-following is faster but introduces a typo into production; clarity-seeking would have caught a potentially erroneous requirement
+
+#### [Pattern] Multi-step verification pattern: code grep → file read → code edit → static verification → grep for remaining instances → build verification (2026-03-04)
+- **Problem solved:** To fix a single typo with confidence, multiple verification layers were applied before and after the change
+- **Why this works:** A single-pass fix without verification could mask the actual location of the typo, introduce new issues during editing, or leave related instances unfixed. Multiple verifications provide defense in depth
+- **Trade-offs:** Multi-step verification takes more time and tool invocations but significantly reduces the chance of incomplete or incorrect fixes being committed
