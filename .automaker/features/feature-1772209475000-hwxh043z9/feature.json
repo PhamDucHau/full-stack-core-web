@@ -1,0 +1,32 @@
+{
+  "category": "Uncategorized",
+  "description": "You are a senior frontend engineer.\n\nProject stack:\n- Next.js 16 (App Router)\n- React 19\n- TypeScript\n- shadcn/ui\n- @tanstack/react-query v5\n- axios\n- react-hook-form\n- zod\n- sonner (toast)\n\n==================================================\nTASK: CREATE FULL BLOG MANAGEMENT UI\n==================================================\n\nBACKEND API AVAILABLE:\n\nGET    /blogs?page=1&limit=10&search=abc\nGET    /blogs/:id\nPOST   /blogs\nPUT    /blogs/:id\nDELETE /blogs/:id\n\nResponse format for list:\n\n{\n  data: Blog[],\n  pagination: {\n    total,\n    page,\n    limit,\n    totalPages,\n    hasNextPage,\n    hasPrevPage\n  }\n}\n\n==================================================\nFEATURE REQUIREMENTS\n==================================================\n\nCreate route:\napp/dashboard/blogs/page.tsx\n\nFeatures:\n- Blog list table\n- Search input with 300ms debounce\n- Pagination\n- Create blog\n- Edit blog\n- Delete blog (with confirm dialog)\n- Image thumbnail in table\n- Loading state\n- Empty state\n- Toast notifications\n\n==================================================\nSTRUCTURE\n==================================================\n\napp/dashboard/blogs/\n  page.tsx\n  components/\n    BlogTable.tsx\n    BlogForm.tsx\n    BlogDialog.tsx\n\nlib/api/blog.api.ts\ntypes/blog.type.ts\n\n==================================================\nIMPLEMENTATION DETAILS\n==================================================\n\n1) React Query v5:\n- useQuery for list\n- useMutation for create/update/delete\n- invalidate queries properly\n\n2) Axios base instance\n\n3) react-hook-form + zod:\n\nconst blogSchema = z.object({\n  title: z.string().min(1, \"Title is required\"),\n  description: z.string().min(1, \"Description is required\"),\n  image: z.string().optional()\n})\n\n4) Use shadcn:\n- Table\n- Input\n- Button\n- Dialog\n- AlertDialog (delete confirm)\n- Pagination component\n\n5) Show image preview in table (small thumbnail)\n\n6) Must use TypeScript properly.\n\n7) Must not skip any file.\n\nGenerate full working code.\nNo pseudo code.",
+  "title": "CREATE FULL BLOG MANAGEMENT UI",
+  "images": [],
+  "imagePaths": [],
+  "textFilePaths": [],
+  "skipTests": true,
+  "model": "opus",
+  "thinkingLevel": "none",
+  "reasoningEffort": "none",
+  "branchName": null,
+  "priority": 2,
+  "planningMode": "skip",
+  "requirePlanApproval": false,
+  "dependencies": [],
+  "workMode": "custom",
+  "titleGenerating": false,
+  "status": "verified",
+  "id": "feature-1772209475000-hwxh043z9",
+  "descriptionHistory": [
+    {
+      "description": "You are a senior frontend engineer.\n\nProject stack:\n- Next.js 16 (App Router)\n- React 19\n- TypeScript\n- shadcn/ui\n- @tanstack/react-query v5\n- axios\n- react-hook-form\n- zod\n- sonner (toast)\n\n==================================================\nTASK: CREATE FULL BLOG MANAGEMENT UI\n==================================================\n\nBACKEND API AVAILABLE:\n\nGET    /blogs?page=1&limit=10&search=abc\nGET    /blogs/:id\nPOST   /blogs\nPUT    /blogs/:id\nDELETE /blogs/:id\n\nResponse format for list:\n\n{\n  data: Blog[],\n  pagination: {\n    total,\n    page,\n    limit,\n    totalPages,\n    hasNextPage,\n    hasPrevPage\n  }\n}\n\n==================================================\nFEATURE REQUIREMENTS\n==================================================\n\nCreate route:\napp/dashboard/blogs/page.tsx\n\nFeatures:\n- Blog list table\n- Search input with 300ms debounce\n- Pagination\n- Create blog\n- Edit blog\n- Delete blog (with confirm dialog)\n- Image thumbnail in table\n- Loading state\n- Empty state\n- Toast notifications\n\n==================================================\nSTRUCTURE\n==================================================\n\napp/dashboard/blogs/\n  page.tsx\n  components/\n    BlogTable.tsx\n    BlogForm.tsx\n    BlogDialog.tsx\n\nlib/api/blog.api.ts\ntypes/blog.type.ts\n\n==================================================\nIMPLEMENTATION DETAILS\n==================================================\n\n1) React Query v5:\n- useQuery for list\n- useMutation for create/update/delete\n- invalidate queries properly\n\n2) Axios base instance\n\n3) react-hook-form + zod:\n\nconst blogSchema = z.object({\n  title: z.string().min(1, \"Title is required\"),\n  description: z.string().min(1, \"Description is required\"),\n  image: z.string().optional()\n})\n\n4) Use shadcn:\n- Table\n- Input\n- Button\n- Dialog\n- AlertDialog (delete confirm)\n- Pagination component\n\n5) Show image preview in table (small thumbnail)\n\n6) Must use TypeScript properly.\n\n7) Must not skip any file.\n\nGenerate full working code.\nNo pseudo code.",
+      "timestamp": "2026-02-27T16:24:35.103Z",
+      "source": "initial"
+    }
+  ],
+  "startedAt": "2026-02-27T16:29:13.985Z",
+  "updatedAt": "2026-02-27T16:34:52.133Z",
+  "justFinishedAt": "2026-02-27T16:34:52.133Z",
+  "prUrl": "https://github.com/PhamDucHau/full-stack-core-web/pull/3"
+}

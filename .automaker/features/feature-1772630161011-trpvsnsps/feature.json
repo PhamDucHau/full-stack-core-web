@@ -1,0 +1,37 @@
+{
+  "category": "Uncategorized",
+  "description": "Sửa logo header từ Car Parts thành Car Partss ",
+  "title": "Add double 's' to header logo text",
+  "images": [],
+  "imagePaths": [
+    {
+      "id": "img-1772630079431-x9xgm7a7a",
+      "path": "/projects/full-stack-core-web/.automaker/features/feature-1772630161011-trpvsnsps/images/pasted-image-2026-03-04T13-14-39-160Z-1772630079529.png",
+      "filename": "pasted-image-2026-03-04T13-14-39-160Z.png",
+      "mimeType": "image/png"
+    }
+  ],
+  "textFilePaths": [],
+  "skipTests": true,
+  "model": "opus",
+  "thinkingLevel": "none",
+  "reasoningEffort": "none",
+  "priority": 2,
+  "planningMode": "skip",
+  "requirePlanApproval": false,
+  "dependencies": [],
+  "workMode": "current",
+  "titleGenerating": false,
+  "status": "verified",
+  "id": "feature-1772630161011-trpvsnsps",
+  "descriptionHistory": [
+    {
+      "description": "Sửa logo header từ Car Parts thành Car Partss ",
+      "timestamp": "2026-03-04T13:16:01.173Z",
+      "source": "initial"
+    }
+  ],
+  "startedAt": "2026-03-04T13:16:01.069Z",
+  "updatedAt": "2026-03-04T13:16:36.631Z",
+  "justFinishedAt": "2026-03-04T13:16:36.631Z"
+}

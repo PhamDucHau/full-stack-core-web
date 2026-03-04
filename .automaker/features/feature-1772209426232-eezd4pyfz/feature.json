@@ -1,0 +1,32 @@
+{
+  "category": "Uncategorized",
+  "description": "You are a senior NestJS backend engineer.\n\nProject stack:\n- NestJS 10\n- MongoDB with Mongoose\n- TypeScript\n- Using DTO + class-validator\n- Clean REST architecture\n- Standard exception handling\n\n==================================================\nTASK: CREATE FULL BLOG MODULE (CRUD + SEARCH + PAGINATION)\n==================================================\n\nBLOG FIELDS:\n- title: string (required)\n- description: string (required)\n- image: string (optional, store URL)\n- timestamps enabled\n\n==================================================\nREQUIREMENTS\n==================================================\n\n1) Create folder structure:\n\nsrc/blog/\n  blog.module.ts\n  blog.controller.ts\n  blog.service.ts\n  dto/\n    create-blog.dto.ts\n    update-blog.dto.ts\n    query-blog.dto.ts\n  schemas/\n    blog.schema.ts\n\n2) Endpoints:\n\nGET    /blogs\nGET    /blogs/:id\nPOST   /blogs\nPUT    /blogs/:id\nDELETE /blogs/:id\n\n3) GET /blogs must support:\n\nQuery params:\n- page: number | \"all\"\n- limit: number\n- search: string (search by title, case insensitive)\n\n4) Implement:\n\n- Pagination logic\n- If page=\"all\" → return all without pagination\n- Default page=1\n- Default limit=10\n- Sort by createdAt DESC\n- Search using MongoDB regex:\n  { title: { $regex: search, $options: \"i\" } }\n\n5) Return list in this format:\n\n{\n  data: Blog[],\n  pagination: {\n    total: number,\n    page: number,\n    limit: number,\n    totalPages: number,\n    hasNextPage: boolean,\n    hasPrevPage: boolean\n  }\n}\n\n6) Use proper validation:\n\nCreateBlogDto:\n- title required\n- description required\n- image optional\n\nUpdateBlogDto:\n- all optional\n\nQueryBlogDto:\n- page optional\n- limit optional\n- search optional\n\n7) Handle errors properly:\n- NotFoundException\n- BadRequestException\n\n8) Code must be:\n- Fully typed\n- Clean\n- Production-ready\n- No pseudo code\n- No missing files\n\nGenerate complete code for every file.\nDo not skip any file.",
+  "title": "Build list api  Backend",
+  "images": [],
+  "imagePaths": [],
+  "textFilePaths": [],
+  "skipTests": true,
+  "model": "opus",
+  "thinkingLevel": "none",
+  "reasoningEffort": "none",
+  "branchName": null,
+  "priority": 2,
+  "planningMode": "skip",
+  "requirePlanApproval": false,
+  "dependencies": [],
+  "workMode": "custom",
+  "titleGenerating": false,
+  "status": "verified",
+  "id": "feature-1772209426232-eezd4pyfz",
+  "descriptionHistory": [
+    {
+      "description": "You are a senior NestJS backend engineer.\n\nProject stack:\n- NestJS 10\n- MongoDB with Mongoose\n- TypeScript\n- Using DTO + class-validator\n- Clean REST architecture\n- Standard exception handling\n\n==================================================\nTASK: CREATE FULL BLOG MODULE (CRUD + SEARCH + PAGINATION)\n==================================================\n\nBLOG FIELDS:\n- title: string (required)\n- description: string (required)\n- image: string (optional, store URL)\n- timestamps enabled\n\n==================================================\nREQUIREMENTS\n==================================================\n\n1) Create folder structure:\n\nsrc/blog/\n  blog.module.ts\n  blog.controller.ts\n  blog.service.ts\n  dto/\n    create-blog.dto.ts\n    update-blog.dto.ts\n    query-blog.dto.ts\n  schemas/\n    blog.schema.ts\n\n2) Endpoints:\n\nGET    /blogs\nGET    /blogs/:id\nPOST   /blogs\nPUT    /blogs/:id\nDELETE /blogs/:id\n\n3) GET /blogs must support:\n\nQuery params:\n- page: number | \"all\"\n- limit: number\n- search: string (search by title, case insensitive)\n\n4) Implement:\n\n- Pagination logic\n- If page=\"all\" → return all without pagination\n- Default page=1\n- Default limit=10\n- Sort by createdAt DESC\n- Search using MongoDB regex:\n  { title: { $regex: search, $options: \"i\" } }\n\n5) Return list in this format:\n\n{\n  data: Blog[],\n  pagination: {\n    total: number,\n    page: number,\n    limit: number,\n    totalPages: number,\n    hasNextPage: boolean,\n    hasPrevPage: boolean\n  }\n}\n\n6) Use proper validation:\n\nCreateBlogDto:\n- title required\n- description required\n- image optional\n\nUpdateBlogDto:\n- all optional\n\nQueryBlogDto:\n- page optional\n- limit optional\n- search optional\n\n7) Handle errors properly:\n- NotFoundException\n- BadRequestException\n\n8) Code must be:\n- Fully typed\n- Clean\n- Production-ready\n- No pseudo code\n- No missing files\n\nGenerate complete code for every file.\nDo not skip any file.",
+      "timestamp": "2026-02-27T16:23:46.315Z",
+      "source": "initial"
+    }
+  ],
+  "startedAt": "2026-02-27T16:24:36.967Z",
+  "updatedAt": "2026-02-27T16:27:32.097Z",
+  "justFinishedAt": "2026-02-27T16:27:32.097Z",
+  "prUrl": "https://github.com/PhamDucHau/full-stack-core-web/pull/3"
+}

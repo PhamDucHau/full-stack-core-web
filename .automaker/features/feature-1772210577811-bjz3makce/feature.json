@@ -1,0 +1,27 @@
+{
+  "category": "PR Review",
+  "description": "Read the review requests on PR #3 and address any feedback the best you can.",
+  "title": "Address PR #3 Review Comments",
+  "images": [],
+  "imagePaths": [],
+  "skipTests": true,
+  "model": "opus",
+  "thinkingLevel": "none",
+  "priority": 1,
+  "planningMode": "skip",
+  "requirePlanApproval": false,
+  "titleGenerating": false,
+  "status": "verified",
+  "dependencies": [],
+  "id": "feature-1772210577811-bjz3makce",
+  "descriptionHistory": [
+    {
+      "description": "Read the review requests on PR #3 and address any feedback the best you can.",
+      "timestamp": "2026-02-27T16:42:57.998Z",
+      "source": "initial"
+    }
+  ],
+  "startedAt": "2026-02-27T16:42:57.905Z",
+  "updatedAt": "2026-02-27T16:45:22.504Z",
+  "justFinishedAt": "2026-02-27T16:45:22.504Z"
+}

@@ -52,3 +52,8 @@ usageStats:
 - **Problem solved:** Rather than editing the button.tsx component variant to hardcode text-black, the fix was applied at the HeroSection usage level
 - **Why this works:** Preserves component reusability - button variant='outline' remains generic. The specific text color need is contextual to HeroSection's white background design.
 - **Trade-offs:** Local ! usage is more readable at call site but violates Tailwind best practices. Keeping variants generic costs slightly more complexity when specificity conflicts occur.
+
+#### [Pattern] Used Grep to search content first, then Glob for file discovery, then Read + Edit for precise modification (2026-03-04)
+- **Problem solved:** Finding and modifying a specific text string in a frontend component
+- **Why this works:** Methodical approach: search → locate → read → verify → edit → verify again reduces risk of modifying wrong content
+- **Trade-offs:** Multiple tool calls add latency but provide confidence and auditability; single-step approach would be faster but riskier
