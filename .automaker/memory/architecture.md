@@ -73,3 +73,8 @@ usageStats:
 - **Rejected:** Fixing only the header component since that's what the user reported visually
 - **Trade-offs:** Required additional edits and file reads, but prevented brand inconsistency and potential SEO issues (page title is used for search results and bookmarks)
 - **Breaking if changed:** If only header was fixed: users would see 'Car Parts' in header but 'Car Partss' in footer and browser tabs, appearing unprofessional and creating duplicate/conflicting brand messaging
+
+#### [Pattern] Component-based button styling uses Tailwind utility classes directly in JSX rather than predefined button variants for outline buttons (2026-03-07)
+- **Problem solved:** HeroSection applies `text-white`, `border-white/30`, `hover:bg-white/10` inline rather than through a button variant composition
+- **Why this works:** Allows one-off styling for specific use cases (hero section light theme) without creating new variant definitions. Quicker for one-off needs but creates styling inconsistency
+- **Trade-offs:** Inline styling is flexible but creates maintenance burden - same style applied differently elsewhere will diverge. Changes here don't propagate

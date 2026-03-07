@@ -178,3 +178,15 @@ usageStats:
 - **Problem solved:** Header branding in LandingNav.tsx uses partial styling for visual effect (making 'Car' a different color)
 - **Why this works:** Allows styling specific portions of text differently (primary color) while keeping code maintainable; spans don't add semantic meaning, just styling
 - **Trade-offs:** Makes the typo less obvious visually (people parse 'Car' and 'Parts' separately), but also means the typo is easier to miss during code review
+
+#### [Gotcha] White text on white background (outline button with white border) renders invisible despite being technically present in DOM (2026-03-07)
+- **Situation:** Button with `text-white` class on outline variant button appears broken/missing in UI even though code is correct
+- **Root cause:** Outline buttons have transparent/light backgrounds. When text color matches button appearance (white), contrast fails completely. This is a contrast issue that only manifests at runtime, not in code review
+- **How to avoid:** Text color change is minimal and focused, but reveals that outline button styling might need contrast validation for all text colors used with it
+
+### Used `text-black` instead of `text-gray-900` or other dark variants for contrast fix (2026-03-07)
+- **Context:** White text on outline button was invisible; needed dark text that works on white/light backgrounds
+- **Why:** Simplest, guaranteed maximum contrast against white/light backgrounds. No semantic meaning needed here - pure contrast requirement
+- **Rejected:** Could use `text-gray-900` for softer appearance, but white button demands maximum contrast for accessibility
+- **Trade-offs:** `text-black` is harsh but guarantees readability. `text-gray-900` would be gentler but might fail contrast requirements depending on button background actual color value
+- **Breaking if changed:** If design system later requires consistent gray text instead of pure black, this specific button becomes inconsistent with pattern
