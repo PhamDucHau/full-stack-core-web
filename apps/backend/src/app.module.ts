@@ -14,6 +14,8 @@ import { CategoryProductModule } from './category-product/category-product.modul
 import { ProductModule } from './product/product.module';
 import { EventModule } from './event/event.module';
 import { PaymentModule } from './payment/payment.module';
+import { AutomakerModule } from './automaker/automaker.module';
+import { TelegramModule } from './telegram/telegram.module';
 
 @Module({
   imports: [
@@ -42,6 +44,8 @@ import { PaymentModule } from './payment/payment.module';
     ProductModule,
     EventModule,
     PaymentModule,
+    AutomakerModule,
+    TelegramModule,
   ],
   controllers: [AppController],
   providers: [AppService],
