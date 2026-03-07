@@ -95,3 +95,8 @@ usageStats:
 - **Problem solved:** Banner color change required modifying className string directly in the component file rather than centralizing color definitions.
 - **Why this works:** Keeping styles inline with components allows for component-specific customization without adding configuration complexity. Good for one-off overrides.
 - **Trade-offs:** Inline approach: easier to understand component purpose, but harder to maintain brand consistency across the app. Centralized approach: better consistency but adds abstraction.
+
+#### [Pattern] Tailwind CSS gradient utilities (from-X-Y via-X-Y to-X-Y) enable consistent, themeable color changes across one component without CSS file duplication (2026-03-07)
+- **Problem solved:** Hero section uses 3-stop gradient that needed color change from gray to yellow scale
+- **Why this works:** Tailwind's utility-first approach with named color scales (500, 600, 700) ensures color consistency and makes bulk color changes straightforward. Single className change replaces what would require multiple CSS rule updates
+- **Trade-offs:** Easier: className-based color changes require no CSS file management. Harder: difficult to see actual RGB values without Tailwind documentation lookup; className verbosity increases with multi-stop gradients

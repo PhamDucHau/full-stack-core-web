@@ -207,3 +207,10 @@ usageStats:
 - **Situation:** Changed banner from 'from-amber-500 via-yellow-500 to-amber-600' to 'from-gray-500 via-gray-600 to-gray-700'. The gradient naming convention is not self-documenting.
 - **Root cause:** Tailwind's gradient implementation expects this specific ordering. Arbitrary ordering or missing 'via' stops will render but not as intended.
 - **How to avoid:** Three-stop gradients provide better visual hierarchy but require more specific color palette planning. Single colors are simpler but less sophisticated.
+
+### Text color (white) was intentionally preserved during color change to maintain contrast ratio accessibility (2026-03-07)
+- **Context:** Changing background from gray to yellow without adjusting text color could affect WCAG contrast compliance
+- **Why:** White text on yellow-600/700 maintains sufficient contrast (gray backgrounds may have different contrast requirements). Changing only background without verifying text contrast would risk accessibility regression
+- **Rejected:** Changing text color to match new palette without accessibility verification
+- **Trade-offs:** Easier: simpler changeset with fewer edits. Harder: requires accessibility knowledge to verify contrast was maintained during color migration
+- **Breaking if changed:** If text color is later changed without contrast verification, section becomes inaccessible to users with low vision or color blindness

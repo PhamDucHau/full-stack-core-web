@@ -89,3 +89,8 @@ usageStats:
 - **Situation:** Implementation verified via grep'ing HTML output for the string 'from-gray-500 via-gray-600 to-gray-700', but this doesn't guarantee the browser interprets Tailwind correctly.
 - **Root cause:** String presence in HTML doesn't equal working styles - Tailwind compilation, CSS ordering, specificity conflicts, or PurgeCSS could all prevent styles from rendering.
 - **How to avoid:** Quick grep verification is fast and requires no infrastructure, but provides false confidence. Proper visual testing catches real issues but adds complexity.
+
+#### [Gotcha] Test assertions must be updated in lockstep with UI changes, not as separate commits (2026-03-07)
+- **Situation:** Color change in HeroSection.tsx required corresponding updates in verify-banner-color.spec.ts for tests to remain valid
+- **Root cause:** Tests serve as contracts that verify expected behavior. If UI changes without test updates, tests become misleading documentation that no longer validate actual behavior
+- **How to avoid:** Easier: immediate feedback that color change was complete. Harder: requires finding and updating all related test assertions across the codebase
