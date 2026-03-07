@@ -112,3 +112,8 @@ usageStats:
 - **Problem solved:** Required to modify hero section styling but started with unknown codebase structure and file locations
 - **Why this works:** Prevents blind modifications to wrong files; discovers related branches/commits showing previous similar changes; maps component hierarchy (landing folder structure)
 - **Trade-offs:** Takes more time upfront but prevents rework; exploration discovered existing test file (verify-banner-color.spec.ts) and related branches (hotfix/change-text-banner)
+
+#### [Pattern] Landing page components organized in dedicated /components/landing/ directory structure with separate concerns (HeroSection, LandingNav, FeaturedProducts, ProductCategories, LandingFooter) (2026-03-07)
+- **Problem solved:** Home page is composed of multiple modular components rather than a single monolithic file
+- **Why this works:** Component modularity enables reusability, independent testing, easier maintenance, and clear separation of concerns. Each section has single responsibility.
+- **Trade-offs:** More files and directory nesting (slightly harder to navigate) vs better code organization and testability

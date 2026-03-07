@@ -231,3 +231,15 @@ usageStats:
 - **Rejected:** Re-optimizing text colors and patterns for each color scheme would introduce maintenance burden with diminishing returns on contrast improvements
 - **Trade-offs:** Simpler maintenance and fewer files modified vs. potential minor accessibility gains from re-tuning all dependent elements
 - **Breaking if changed:** If text colors were removed or SVG patterns deleted, the hero section would lose visual hierarchy and become harder to read
+
+### Used Tailwind CSS gradient classes (from-purple-500 via-purple-600 to-purple-700) for hero section background instead of hardcoded CSS or inline styles (2026-03-07)
+- **Context:** Needed to change hero banner color from green to purple on home page
+- **Why:** Tailwind CSS provides semantic color naming, responsive utilities, and consistency across the design system. Gradient composition with from/via/to allows smooth color transitions.
+- **Rejected:** Direct CSS color values (#hex), CSS-in-JS solutions, or separate CSS modules would require additional setup and lose the utility-first composability
+- **Trade-offs:** Tight coupling to Tailwind's color palette (limited to predefined values) vs flexibility of arbitrary colors; requires Tailwind configured in project; className string length increases but bundling handles minification
+- **Breaking if changed:** Removing Tailwind CSS would break the entire color system. Changing gradient direction (bg-gradient-to-br) would break the visual design intent.
+
+#### [Pattern] Hero section uses responsive padding classes (pt-24 pb-20 lg:pt-32 lg:pb-28) for vertical spacing instead of fixed pixel values (2026-03-07)
+- **Problem solved:** Hero section needs to adapt vertical spacing between mobile and desktop viewports
+- **Why this works:** Tailwind's responsive prefixes (lg:) enable mobile-first design that scales gracefully. Relative spacing (24, 28 units) maintains proportions across screen sizes rather than hardcoded breakpoints.
+- **Trade-offs:** Responsive classes add className length but provide built-in mobile optimization; requires understanding Tailwind breakpoint system

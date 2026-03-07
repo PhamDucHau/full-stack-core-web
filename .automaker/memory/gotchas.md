@@ -5,9 +5,9 @@ relevantTo: [error, bug, fix, issue, problem]
 importance: 0.9
 relatedFiles: []
 usageStats:
-  loaded: 47
-  referenced: 27
-  successfulFeatures: 27
+  loaded: 48
+  referenced: 28
+  successfulFeatures: 28
 ---
 # Gotchas
 
@@ -71,3 +71,8 @@ Mistakes and edge cases to avoid. These are lessons learned from past issues.
 - **Situation:** Using `from-cyan-500 via-blue-600 to-blue-700` creates ocean blue effect, but individual color names don't obviously convey 'ocean blue'
 - **Root cause:** Tailwind color names are semantically generic (cyan, blue) rather than semantic (primary, secondary, ocean-blue). Developers new to codebase must experiment or have design context to understand the intent
 - **How to avoid:** Speed of implementation vs. code clarity and maintainability. New developers need design system documentation to understand color choices
+
+#### [Gotcha] Color gradient exploration required multiple git branch checks and file searches before finding the actual implementation location (2026-03-07)
+- **Situation:** Developer had to explore codebase structure extensively (glob patterns for hero/banner/home, git history searches) before locating the actual HeroSection.tsx file
+- **Root cause:** No direct documentation of component locations or naming conventions; had to infer from directory structure (components/landing/HeroSection.tsx)
+- **How to avoid:** Exploratory approach discovered full project structure (beneficial) but was slower than direct path navigation would have been (inefficient)
