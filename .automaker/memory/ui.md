@@ -197,3 +197,8 @@ usageStats:
 - **Rejected:** Changing only the background gradient while keeping cyan-100 text would result in unreadable/low-contrast UI
 - **Trade-offs:** More edits required (3 separate color changes) but ensures visual coherence and accessibility. Could have been simplified with CSS custom properties or theme tokens
 - **Breaking if changed:** If background is reverted but text colors aren't, or vice versa, the UI becomes visually broken with poor contrast ratios
+
+#### [Pattern] Color palette consistency across semantic layers - gradient definition paired with text color updates (2026-03-07)
+- **Problem solved:** Changing banner background from yellow/orange gradient to gray required updating not just the background but all dependent text colors to maintain contrast and visual hierarchy
+- **Why this works:** Tailwind gradient classes (from-yellow-400 via-yellow-500 to-amber-500) define multiple color stops. When changed to gray, text colors using yellow-100 became invisible. The pattern shows semantic color dependency: background gradient → text color tokens must be updated together as a unit
+- **Trade-offs:** Easier: Tailwind's utility classes make color changes explicit and traceable. Harder: No automatic color relationship enforcement - requires developer discipline to update dependent layers

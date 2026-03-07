@@ -83,3 +83,10 @@ usageStats:
 - **Problem solved:** Hero section colors are embedded directly in className strings rather than sourced from a theme or design system
 - **Why this works:** Quick implementation for single-use styling; colors tightly coupled to specific component
 - **Trade-offs:** Easy to implement and modify for one-off changes, but creates maintenance burden if same colors need updating elsewhere or if design system evolves
+
+### Inline Tailwind classes within tsx component rather than extracted theme/style module (2026-03-07)
+- **Context:** The HeroSection component uses inline className strings with Tailwind utility classes rather than imported color constants or CSS modules
+- **Why:** Tailwind's utility-first approach encourages inline styling for rapid development and co-locating styles with JSX. For component-specific styling, this reduces indirection. However, this creates tight coupling between component logic and presentation
+- **Rejected:** Alternative of exporting color tokens (e.g., BANNER_GRADIENT = 'from-gray-500 via-gray-600 to-gray-700') would centralize color changes but adds extra indirection for single-use components
+- **Trade-offs:** Easier: Quick visual changes, no file-switching needed. Harder: Harder to implement global color scheme changes - requires updating multiple files if the same color is used elsewhere; no single source of truth for brand colors
+- **Breaking if changed:** If brand colors need to change site-wide, this pattern requires find-and-replace across multiple component files rather than one centralized config update

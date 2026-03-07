@@ -5,9 +5,9 @@ relevantTo: [error, bug, fix, issue, problem]
 importance: 0.9
 relatedFiles: []
 usageStats:
-  loaded: 34
-  referenced: 21
-  successfulFeatures: 21
+  loaded: 35
+  referenced: 22
+  successfulFeatures: 22
 ---
 # Gotchas
 
@@ -61,3 +61,8 @@ Mistakes and edge cases to avoid. These are lessons learned from past issues.
 - **Situation:** Chosen gradient: `from-yellow-400 via-yellow-500 to-amber-500` mixes yellow and amber color families
 - **Root cause:** Likely chosen to create visual depth and variation in the gradient, matching the original cyan-blue pattern which also used multiple color values
 - **How to avoid:** More visually dynamic but creates color inconsistency that could complicate future theme adjustments or brand color standardization
+
+#### [Gotcha] Color keyword search complexity in monorepos with multiple file types (2026-03-07)
+- **Situation:** Initial search for 'yellow|orange' across tsx/ts/css files returned many unrelated results. Required multiple grep/find iterations to isolate the actual banner component among other components using similar colors
+- **Root cause:** Monorepo structure (apps/frontend) + multiple component files + CSS-in-JS (Tailwind classes embedded in tsx) means color references are scattered. A naive grep for 'yellow' could match UI elements, Tailwind config, custom CSS, documentation, etc.
+- **How to avoid:** Using file-type filtering and path scoping (components/landing directory) reduced noise. But still required reading the actual component file to verify it was the banner vs another yellow element
