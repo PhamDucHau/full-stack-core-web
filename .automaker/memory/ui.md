@@ -190,3 +190,10 @@ usageStats:
 - **Rejected:** Could use `text-gray-900` for softer appearance, but white button demands maximum contrast for accessibility
 - **Trade-offs:** `text-black` is harsh but guarantees readability. `text-gray-900` would be gentler but might fail contrast requirements depending on button background actual color value
 - **Breaking if changed:** If design system later requires consistent gray text instead of pure black, this specific button becomes inconsistent with pattern
+
+### Color change applied to both background gradient and dependent text colors simultaneously (2026-03-07)
+- **Context:** Changing hero banner from cyan-blue gradient to yellow gradient required coordinating multiple color properties across the component
+- **Why:** Text color must change in tandem with background to maintain contrast and readability. Cyan-100 text on yellow background would have poor contrast; yellow-100 text maintains proper contrast on yellow background
+- **Rejected:** Changing only the background gradient while keeping cyan-100 text would result in unreadable/low-contrast UI
+- **Trade-offs:** More edits required (3 separate color changes) but ensures visual coherence and accessibility. Could have been simplified with CSS custom properties or theme tokens
+- **Breaking if changed:** If background is reverted but text colors aren't, or vice versa, the UI becomes visually broken with poor contrast ratios

@@ -5,9 +5,9 @@ relevantTo: [error, bug, fix, issue, problem]
 importance: 0.9
 relatedFiles: []
 usageStats:
-  loaded: 33
-  referenced: 20
-  successfulFeatures: 20
+  loaded: 34
+  referenced: 21
+  successfulFeatures: 21
 ---
 # Gotchas
 
@@ -56,3 +56,8 @@ Mistakes and edge cases to avoid. These are lessons learned from past issues.
 - **Situation:** Developer was troubleshooting based on visual inspection of UI but search results pointed to different files initially
 - **Root cause:** The grep search without path specification may have found results in unexpected files; developer needed to explicitly search for Header components to locate the actual source
 - **How to avoid:** Required additional Glob and Read operations to pinpoint the correct component, but ensured finding the actual source of truth rather than just text occurrences
+
+#### [Gotcha] Gradient color stops use different Tailwind scales (yellow-400/500/amber-500) rather than consistent scale depth (2026-03-07)
+- **Situation:** Chosen gradient: `from-yellow-400 via-yellow-500 to-amber-500` mixes yellow and amber color families
+- **Root cause:** Likely chosen to create visual depth and variation in the gradient, matching the original cyan-blue pattern which also used multiple color values
+- **How to avoid:** More visually dynamic but creates color inconsistency that could complicate future theme adjustments or brand color standardization

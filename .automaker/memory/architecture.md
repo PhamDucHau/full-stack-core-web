@@ -78,3 +78,8 @@ usageStats:
 - **Problem solved:** HeroSection applies `text-white`, `border-white/30`, `hover:bg-white/10` inline rather than through a button variant composition
 - **Why this works:** Allows one-off styling for specific use cases (hero section light theme) without creating new variant definitions. Quicker for one-off needs but creates styling inconsistency
 - **Trade-offs:** Inline styling is flexible but creates maintenance burden - same style applied differently elsewhere will diverge. Changes here don't propagate
+
+#### [Pattern] Hard-coded Tailwind color classes in component instead of centralized theme configuration (2026-03-07)
+- **Problem solved:** Hero section colors are embedded directly in className strings rather than sourced from a theme or design system
+- **Why this works:** Quick implementation for single-use styling; colors tightly coupled to specific component
+- **Trade-offs:** Easy to implement and modify for one-off changes, but creates maintenance burden if same colors need updating elsewhere or if design system evolves
