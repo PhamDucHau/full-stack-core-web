@@ -6,9 +6,9 @@ import { Phone } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="relative bg-black text-white pt-24 pb-20 lg:pt-32 lg:pb-28 overflow-hidden">
-      {/* Black background with subtle pattern overlay */}
-      <div className="absolute inset-0 bg-black" />
+    <section className="relative bg-red-600 text-white pt-24 pb-20 lg:pt-32 lg:pb-28 overflow-hidden">
+      {/* Red background with subtle pattern overlay */}
+      <div className="absolute inset-0 bg-red-600" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto">
           <p className="text-sm font-medium text-gray-300 uppercase tracking-wider mb-4">
