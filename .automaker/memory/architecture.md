@@ -160,3 +160,8 @@ usageStats:
 - **Rejected:** CSS variables or theme configuration would require changes in multiple locations (config file + component) and add indirection when debugging colors
 - **Trade-offs:** Faster initial development and fewer indirection layers, but makes future theme-wide color changes require multi-file refactoring instead of a single configuration update
 - **Breaking if changed:** Converting to a CSS variable system would require extracting all hardcoded color classes into a theme provider, affecting any component using direct Tailwind color classes
+
+#### [Pattern] Centralized component ownership for banner styling with synchronized test updates (2026-03-08)
+- **Problem solved:** Both component implementation and visual regression tests needed updates to maintain test validity
+- **Why this works:** Keeping component and its verification test in sync prevents false positives/negatives; single source of truth for expected appearance
+- **Trade-offs:** More coordination overhead when changing appearance, but catches regressions immediately; prevents shipping visual bugs with broken tests

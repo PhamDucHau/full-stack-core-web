@@ -106,3 +106,8 @@ usageStats:
 - **Rejected:** Could have kept gradient approach with yellow gradients (from-yellow-400/via-yellow-500/to-yellow-600) but added unnecessary complexity
 - **Trade-offs:** Lost color depth/sophistication from gradient for gain in simplicity and test maintainability; visual richness decreased
 - **Breaking if changed:** If gradient styling is reintroduced without updating test expectations, tests will fail and mask the actual CSS changes
+
+#### [Gotcha] Test verification uses className attribute matching rather than computed styles (2026-03-08)
+- **Situation:** Playwright test checks for 'bg-red-500' presence in class string, not actual rendered color value
+- **Root cause:** Tailwind CSS uses utility classes that compile to CSS; verifying the class name is simpler and more reliable than parsing computed styles which may be subject to browser rendering differences
+- **How to avoid:** Class-based verification is fast and deterministic but only validates that the right class is applied, not that Tailwind actually outputs the expected color value

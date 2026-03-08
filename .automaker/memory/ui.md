@@ -339,3 +339,10 @@ usageStats:
 - **Problem solved:** Changing hero section from yellow to cyan required updating not just the main background but also text colors, button hover states, and border colors to maintain visual consistency and contrast ratios
 - **Why this works:** Partial color updates would break contrast accessibility and visual coherence. All interdependent color values must change together to maintain the design system's integrity
 - **Trade-offs:** Requires more edits per color change but ensures accessibility standards (WCAG contrast) and design consistency are maintained throughout
+
+### Color scheme changed from cyan to red across entire hero section component and tests (2026-03-08)
+- **Context:** Banner color update required consistent color application across multiple UI elements and test assertions
+- **Why:** Maintaining visual consistency requires updating background, text, button states, and borders simultaneously to avoid color mismatches that degrade UX
+- **Rejected:** Partial updates (e.g., only background) would create visual inconsistency between banner and interactive elements
+- **Trade-offs:** More files to update (component + test) but ensures coherent visual design; single-color changes are easier to implement but risk inconsistent appearance
+- **Breaking if changed:** If color values don't match between section background (bg-red-500) and text foreground (text-red-900), contrast fails accessibility standards; tests fail if color classes don't match implementation
