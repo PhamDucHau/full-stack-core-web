@@ -99,3 +99,10 @@ usageStats:
 - **Situation:** Changed hero section gradient from pink to red, which required updating both component className and test assertions checking for specific color classes
 - **Root cause:** E2E tests use getAttribute('class') to verify CSS classes applied - Tailwind class names are the source of truth, not computed styles. Mismatch between component and test causes false negatives
 - **How to avoid:** Class-based assertions are more brittle to refactoring but more reliable across browsers; computed style checks are resilient but environment-dependent
+
+### Test assertions simplified from gradient color verification (from-red-500/via-red-600/to-red-700) to single class check (bg-yellow-500) (2026-03-07)
+- **Context:** Original implementation tested multiple gradient classes; new implementation uses solid color
+- **Why:** Tailwind gradient syntax is more verbose and brittle; single background class is simpler, more maintainable, and less prone to test fragility
+- **Rejected:** Could have kept gradient approach with yellow gradients (from-yellow-400/via-yellow-500/to-yellow-600) but added unnecessary complexity
+- **Trade-offs:** Lost color depth/sophistication from gradient for gain in simplicity and test maintainability; visual richness decreased
+- **Breaking if changed:** If gradient styling is reintroduced without updating test expectations, tests will fail and mask the actual CSS changes

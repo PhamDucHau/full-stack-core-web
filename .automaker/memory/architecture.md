@@ -141,3 +141,8 @@ usageStats:
 - **Problem solved:** Task required finding and modifying a specific UI component in an unknown/large codebase structure.
 - **Why this works:** This discovery pattern prevents blind assumptions about folder structure and component locations. By exploring first, avoided editing wrong files and understood the landing page component architecture.
 - **Trade-offs:** Initial exploration takes more time upfront but provides confidence and prevents rework. Better for unfamiliar codebases than jumping to edits.
+
+#### [Pattern] Color values hardcoded in component classes rather than extracted to theme config/design tokens (2026-03-07)
+- **Problem solved:** HeroSection.tsx contains hardcoded Tailwind classes (bg-yellow-500, text-gray-900) with no centralized color management
+- **Why this works:** Tailwind utilities are applied directly; no theme abstraction layer created despite being a landing page that may have reusable color scheme
+- **Trade-offs:** Faster initial implementation vs. reduced maintainability; single color change required editing component files rather than config

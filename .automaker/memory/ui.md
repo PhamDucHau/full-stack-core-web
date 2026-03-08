@@ -287,3 +287,8 @@ usageStats:
 - **Rejected:** Could have completely rewritten the section styling or introduced new classes, but that introduces risk of breaking responsive behavior or spacing.
 - **Trade-offs:** Conservative change is safer but less flexible if future requirements need other styling adjustments. Would require another edit cycle.
 - **Breaking if changed:** If future code relies on the SVG pattern existing (e.g., CSS selectors looking for specific opacity values, or animations targeting the pattern div), those would break. Unlikely since pattern was decorative, but worth documenting in commit message.
+
+#### [Gotcha] Changing background color from red to yellow required simultaneous text color adjustments (white→gray-900, gray-300→gray-700) to maintain readability (2026-03-07)
+- **Situation:** Yellow background has different contrast properties than red; white text on yellow becomes illegible
+- **Root cause:** Luminance values differ significantly: red-600 is darker (~30% brightness) vs yellow-500 is lighter (~90% brightness), requiring inverted text color strategy
+- **How to avoid:** Gained readability and accessibility but lost the original 'light text on dark background' pattern consistency across the site
