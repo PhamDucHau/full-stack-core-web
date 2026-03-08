@@ -292,3 +292,20 @@ usageStats:
 - **Situation:** Yellow background has different contrast properties than red; white text on yellow becomes illegible
 - **Root cause:** Luminance values differ significantly: red-600 is darker (~30% brightness) vs yellow-500 is lighter (~90% brightness), requiring inverted text color strategy
 - **How to avoid:** Gained readability and accessibility but lost the original 'light text on dark background' pattern consistency across the site
+
+### Used red-600 instead of red-500 for hero section background color (2026-03-08)
+- **Context:** Color scheme migration from yellow-500 to red for landing page hero banner
+- **Why:** red-600 provides better visual weight and professional appearance for a primary brand color, especially for e-commerce automotive parts site where authority and trust matter
+- **Rejected:** red-500 (lighter variant) would appear less authoritative; red-700 (darker) would reduce readability of white text
+- **Trade-offs:** red-600 is slightly darker reducing brightness but improving perceived quality and contrast with white text elements. Trade-off between vibrance and professionalism favored the latter.
+- **Breaking if changed:** Changing to lighter reds (red-400/red-500) would require re-evaluating text contrast ratios for WCAG accessibility compliance; darker reds (red-700+) would reduce button visibility
+
+#### [Pattern] Coordinated color palette across text hierarchy: main text (white), secondary text (red-100), tertiary elements (white/red combos on buttons) (2026-03-08)
+- **Problem solved:** Maintaining visual hierarchy and readability when changing from yellow (high contrast dark text) to red background
+- **Why this works:** Prevents color chaos - by using red-100 for secondary text instead of random grays, maintains cohesive red family palette while ensuring 4.5:1+ contrast ratio for accessibility. Buttons use opposite poles (white bg/red text vs red bg/white text) for clear CTA distinction.
+- **Trade-offs:** Red-100 is less familiar as secondary text color but provides better thematic consistency; requires slightly more careful attention to contrast ratios compared to neutral grays
+
+#### [Gotcha] Button styling requires inverse logic when background color changes: primary CTA button inverted to white background with red text instead of matching red background with white text (2026-03-08)
+- **Situation:** Converting yellow hero section (naturally bright, needed dark text) to red (naturally dark, works with light text), requiring opposite button treatment
+- **Root cause:** The primary CTA button (Products) needs maximum visual distinction from the background. On yellow, dark button text worked. On red, white background button with red text creates stronger contrast and draws eye better than red button with white text, which blends with surrounding text.
+- **How to avoid:** Inverted button styling is less conventional (white-on-red) but more effective for CTA emphasis; requires developers to understand context-specific button logic rather than applying one consistent style
