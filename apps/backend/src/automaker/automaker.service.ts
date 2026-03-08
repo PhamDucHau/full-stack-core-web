@@ -211,19 +211,44 @@ export class AutomakerService {
     onProgress?: OnProgressCallback,
   ): Promise<void> {
     const targetStatus = 'waiting_approval';
-    let pollCount = 0;
     const minPollsBeforeExit = 3;
+    const MAX_POLL_MINUTES = 30; // 🔒 Timeout tổng thể
+    const maxPolls = (MAX_POLL_MINUTES * 60 * 1000) / 2000;
+  
+    let pollCount = 0;
+    let consecutiveErrors = 0;
+    const MAX_CONSECUTIVE_ERRORS = 5;
+  
     for (;;) {
       pollCount++;
+  
+      if (pollCount > maxPolls) {
+        this.logger.error(`[POLL] Timeout sau ${MAX_POLL_MINUTES} phút | featureId=${featureId}`);
+        throw new Error(`Poll timeout sau ${MAX_POLL_MINUTES} phút`);
+      }
+  
+      // 🔒 Isolate cả 2 promise, không để lỗi 1 cái crash cả block
       const [getData, agentData] = await Promise.all([
-        this.getFeature(projectPath, featureId, apiKey),
+        this.getFeatureSafe(projectPath, featureId, apiKey),
         this.callAgentOutput(projectPath, featureId, apiKey),
       ]);
+  
+      if (getData === null) {
+        consecutiveErrors++;
+        this.logger.warn(`[POLL] getFeature lỗi lần ${consecutiveErrors}/${MAX_CONSECUTIVE_ERRORS}`);
+        if (consecutiveErrors >= MAX_CONSECUTIVE_ERRORS) {
+          throw new Error(`getFeature thất bại ${MAX_CONSECUTIVE_ERRORS} lần liên tiếp`);
+        }
+        await delay(2000);
+        continue;
+      }
+  
+      consecutiveErrors = 0;
       const status = getData?.feature?.status ?? getData?.status;
       this.logger.log(
         `[POLL] featureId=${featureId} | status=${status} | poll#=${pollCount} | contentLen=${agentData?.content?.length ?? 0}`,
       );
-
+  
       if (agentData?.content && onProgress) {
         try {
           await onProgress(agentData.content);
@@ -231,9 +256,23 @@ export class AutomakerService {
           this.logger.warn(`[POLL] onProgress error: ${(e as Error)?.message}`);
         }
       }
-
+  
       if (status === targetStatus && pollCount >= minPollsBeforeExit) return;
       await delay(2000);
+    }
+  }
+  
+  // 🆕 Wrapper an toàn cho getFeature — không throw, trả null nếu lỗi
+  private async getFeatureSafe(
+    projectPath: string,
+    featureId: string,
+    apiKey: string,
+  ): Promise<{ feature?: { status?: string }; status?: string } | null> {
+    try {
+      return await this.getFeature(projectPath, featureId, apiKey);
+    } catch (err: any) {
+      this.logger.warn(`[GET-FEATURE] Lỗi (bỏ qua) | featureId=${featureId} | ${err?.message}`);
+      return null;
     }
   }
 
