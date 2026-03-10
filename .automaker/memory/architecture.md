@@ -165,3 +165,10 @@ usageStats:
 - **Problem solved:** Both component implementation and visual regression tests needed updates to maintain test validity
 - **Why this works:** Keeping component and its verification test in sync prevents false positives/negatives; single source of truth for expected appearance
 - **Trade-offs:** More coordination overhead when changing appearance, but catches regressions immediately; prevents shipping visual bugs with broken tests
+
+### Test file verifies single section by text content filter rather than semantic HTML markers (data-testid, role attributes) (2026-03-08)
+- **Context:** Test uses: page.locator('section').filter({ hasText: 'From engine components to braking systems' })
+- **Why:** Avoids need for test-specific attributes in production code; uses actual visible content
+- **Rejected:** Adding data-testid attributes which add test infrastructure to production markup
+- **Trade-offs:** More resilient to attribute name changes but fragile if marketing copy changes; test documents expected content implicitly
+- **Breaking if changed:** If hero section heading text changes, test fails regardless of actual banner color - couples test to content, not just functionality

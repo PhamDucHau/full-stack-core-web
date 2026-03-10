@@ -346,3 +346,8 @@ usageStats:
 - **Rejected:** Partial updates (e.g., only background) would create visual inconsistency between banner and interactive elements
 - **Trade-offs:** More files to update (component + test) but ensures coherent visual design; single-color changes are easier to implement but risk inconsistent appearance
 - **Breaking if changed:** If color values don't match between section background (bg-red-500) and text foreground (text-red-900), contrast fails accessibility standards; tests fail if color classes don't match implementation
+
+#### [Pattern] Color scheme change requires synchronized updates across component (background, text, buttons, borders) - no centralized color token (2026-03-08)
+- **Problem solved:** Updating HeroSection from red to green required 6+ separate edits across multiple CSS classes
+- **Why this works:** Direct Tailwind class usage provides runtime flexibility but creates refactoring burden
+- **Trade-offs:** Easier initial development (no abstraction layer) but harder maintenance; all color changes require multiple edits

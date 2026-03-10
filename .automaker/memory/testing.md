@@ -111,3 +111,8 @@ usageStats:
 - **Situation:** Playwright test checks for 'bg-red-500' presence in class string, not actual rendered color value
 - **Root cause:** Tailwind CSS uses utility classes that compile to CSS; verifying the class name is simpler and more reliable than parsing computed styles which may be subject to browser rendering differences
 - **How to avoid:** Class-based verification is fast and deterministic but only validates that the right class is applied, not that Tailwind actually outputs the expected color value
+
+#### [Gotcha] Test file uses class name assertion (expect(className).toContain('bg-green-500')) instead of computed style verification (2026-03-08)
+- **Situation:** Playwright E2E test for banner color verification
+- **Root cause:** Class-based approach is simpler and more maintainable than computing actual CSS colors, which requires browser rendering and color space conversion
+- **How to avoid:** Faster tests but couples test to implementation detail (Tailwind classes); if CSS framework changes, test breaks despite visual correctness
