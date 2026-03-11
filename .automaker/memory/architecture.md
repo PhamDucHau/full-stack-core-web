@@ -172,3 +172,8 @@ usageStats:
 - **Rejected:** Adding data-testid attributes which add test infrastructure to production markup
 - **Trade-offs:** More resilient to attribute name changes but fragile if marketing copy changes; test documents expected content implicitly
 - **Breaking if changed:** If hero section heading text changes, test fails regardless of actual banner color - couples test to content, not just functionality
+
+#### [Pattern] Exploration pattern: used multiple search strategies (glob patterns, grep, file tree inspection) to locate component before modification (2026-03-10)
+- **Problem solved:** Finding hero section in a monorepo structure with multiple directories (components, pages, app, etc.)
+- **Why this works:** Comprehensive search prevents modifying wrong files and ensures all related files are identified; multiple approaches increase confidence in correct file location
+- **Trade-offs:** Takes more time upfront but prevents breaking changes; reduces risk of incomplete modifications across a feature

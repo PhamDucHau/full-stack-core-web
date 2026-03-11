@@ -363,3 +363,15 @@ usageStats:
 - **Problem solved:** Single feature change (hero color) touched 6+ different Tailwind utilities across primary button, secondary button, background, text, and hover states
 - **Why this works:** Component design separates concerns into base, text, interactive, and state layers. Updating all layers together prevents visual inconsistency where interactive states don't match base colors.
 - **Trade-offs:** More changes to coordinate (higher complexity), but ensures professional, polished appearance. Fewer changes = risk of incomplete theming.
+
+### Used Tailwind CSS color system (yellow-500, yellow-900) instead of hex values for theming hero section (2026-03-10)
+- **Context:** Changing hero banner color from cyan to yellow across multiple CSS classes and text elements
+- **Why:** Tailwind's semantic color naming enables consistent theming, easier maintenance, and automatic contrast pairing (yellow-500 for background, yellow-900 for text ensures readability)
+- **Rejected:** Direct hex color values (#eab308, #713f12) - would require manual updates across multiple properties and lose semantic meaning
+- **Trade-offs:** Easier to change theme globally later vs. less granular control over exact color values; more constrained to predefined palette
+- **Breaking if changed:** Changing from yellow back to another color requires updates across: background (bg-*), text (text-*), hover states (hover:bg-*), borders (border-*/30), and button text colors
+
+#### [Gotcha] Text color contrast must be maintained when changing background colors - yellow-900 chosen for text specifically to work with yellow-500 background (2026-03-10)
+- **Situation:** Simply changing all instances of cyan-* to yellow-* could result in low contrast if not carefully paired
+- **Root cause:** WCAG accessibility requires sufficient contrast ratio; cyan-900 on cyan-500 works, but yellow requires yellow-900 (darker shade) on yellow-500 to maintain readability
+- **How to avoid:** Requires understanding of color shade hierarchy vs. simple find-replace; safer approach prevents accessibility violations
