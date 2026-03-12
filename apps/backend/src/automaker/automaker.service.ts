@@ -97,6 +97,21 @@ export class AutomakerService {
       const featureId = data?.feature?.id ?? (data?.id as string) ?? body.feature.id;
       this.logger.log(`[CREATE] Thành công | featureId=${featureId}`);
 
+      this.logger.log(
+        `[UPDATE] Gọi update status=in_progress + startedAt | featureId=${featureId}`,
+      );
+      await this.updateFeatureStatus(featureId, {
+        status: 'in_progress',
+        startedAt: new Date().toISOString(),
+      });
+      this.logger.log(
+        `[UPDATE] Thành công status=in_progress | featureId=${featureId}`,
+      );
+
+      this.logger.log(`[AUTO-MODE] Gọi run-feature | featureId=${featureId}`);
+      await this.runFeatureAutoMode(projectPath, featureId, apiKey);
+      this.logger.log(`[AUTO-MODE] Thành công | featureId=${featureId}`);
+
       if (onProgress) {
         try {
           await onProgress('Đã nhận được yêu cầu và đang tiến hành xử lý.');
@@ -281,7 +296,7 @@ export class AutomakerService {
    */
   private async updateFeatureStatus(
     featureId: string,
-    updates: { status: string },
+    updates: Record<string, any>,
   ): Promise<AutomakerApiResponse> {
     const url = `${this.baseUrl.replace(/\/$/, '')}/api/features/update`;
     const projectPath =
@@ -300,6 +315,31 @@ export class AutomakerService {
       }),
     );
     return response.data as AutomakerApiResponse;
+  }
+
+  /**
+   * POST /api/auto-mode/run-feature
+   */
+  private async runFeatureAutoMode(
+    projectPath: string,
+    featureId: string,
+    apiKey: string,
+  ): Promise<unknown> {
+    const url = `${this.baseUrl.replace(/\/$/, '')}/api/auto-mode/run-feature`;
+    const body = {
+      projectPath,
+      featureId,
+      useWorktrees: true,
+    };
+
+    const response = await firstValueFrom(
+      this.httpService.post(url, body, {
+        headers: this.getHeaders(apiKey),
+        timeout: 60000,
+      }),
+    );
+
+    return response.data;
   }
 
   /**
