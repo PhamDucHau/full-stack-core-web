@@ -177,3 +177,8 @@ usageStats:
 - **Problem solved:** Finding hero section in a monorepo structure with multiple directories (components, pages, app, etc.)
 - **Why this works:** Comprehensive search prevents modifying wrong files and ensures all related files are identified; multiple approaches increase confidence in correct file location
 - **Trade-offs:** Takes more time upfront but prevents breaking changes; reduces risk of incomplete modifications across a feature
+
+#### [Pattern] Monorepo structure with apps/frontend/ containing components organized by feature (landing/) and ui primitives (ui/). HeroSection component uses composed Link component from Next.js. (2026-03-11)
+- **Problem solved:** Understanding component organization in a full-stack application with shared component hierarchy
+- **Why this works:** This structure allows separation of domain-specific components (landing page features) from reusable UI primitives (button), enabling code reuse and consistent styling
+- **Trade-offs:** Requires more files to navigate but enables better separation of concerns and component reusability; slightly more complex for simple changes but better for scaling

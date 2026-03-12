@@ -392,3 +392,15 @@ usageStats:
 - **Problem solved:** Primary CTA button needed to stand out on red hero background while maintaining visual hierarchy and interaction feedback
 - **Why this works:** White-on-red provides maximum contrast for readability while red text (matching background) on white hover state creates visual continuity. This pattern preserves accessibility while maintaining design coherence
 - **Trade-offs:** Requires coordinating button color with background color for optimal UX; if background changes, button strategy may need revision. Benefits: clear CTAs, good accessibility, coherent design
+
+#### [Gotcha] Component discovery required multi-step exploration across file patterns (hero*, banner*, home*, index*) before finding the target. Direct search for 'About Us' text was necessary to pinpoint the exact location. (2026-03-11)
+- **Situation:** Locating a specific UI element (hero banner button with 'About Us' text) in a large monorepo without knowing exact file structure
+- **Root cause:** Naming conventions in the codebase weren't immediately obvious - the HeroSection component was found in /components/landing/ directory, not directly under common patterns
+- **How to avoid:** More tool calls needed upfront but discovered correct component structure and naming conventions for future reference
+
+### Used Tailwind CSS utility class `text-red-500` for text color styling instead of inline CSS or CSS modules (2026-03-11)
+- **Context:** Styling the 'About Us' button text to display in red color
+- **Why:** The existing codebase uses Tailwind CSS (evident from className with border-white/30, text-white patterns), so maintaining consistency with existing style patterns
+- **Rejected:** Creating new CSS class or using styled-components would introduce style system inconsistency; inline styles would bypass design system
+- **Trade-offs:** Easier maintenance and consistency with existing codebase, but creates dependency on Tailwind color scale; requires knowledge of Tailwind utility naming to modify later
+- **Breaking if changed:** If Tailwind CSS is removed or configuration changes, this styling breaks; color changes require understanding Tailwind's color scale (text-red-500 vs text-red-600)
