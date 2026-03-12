@@ -182,3 +182,10 @@ usageStats:
 - **Problem solved:** Understanding component organization in a full-stack application with shared component hierarchy
 - **Why this works:** This structure allows separation of domain-specific components (landing page features) from reusable UI primitives (button), enabling code reuse and consistent styling
 - **Trade-offs:** Requires more files to navigate but enables better separation of concerns and component reusability; slightly more complex for simple changes but better for scaling
+
+### Color changes isolated to single component file rather than centralizing color definitions (2026-03-12)
+- **Context:** All hero section color changes were made in HeroSection.tsx inline via Tailwind classes
+- **Why:** For UI-specific colors in isolated components, inline Tailwind classes avoid over-engineering. The hero is a leaf component with no color inheritance hierarchy.
+- **Rejected:** Creating a colors.ts constants file or extracting to Tailwind theme config extensions - overhead for single-component styling
+- **Trade-offs:** Easy to understand and modify in HeroSection.tsx but color scheme is not reusable across other components. Future orange sections would duplicate class names.
+- **Breaking if changed:** If the design system expands to multiple orange sections, this approach creates maintenance burden. Refactoring to centralized tokens would require updating all files simultaneously.

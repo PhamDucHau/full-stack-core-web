@@ -404,3 +404,8 @@ usageStats:
 - **Rejected:** Creating new CSS class or using styled-components would introduce style system inconsistency; inline styles would bypass design system
 - **Trade-offs:** Easier maintenance and consistency with existing codebase, but creates dependency on Tailwind color scale; requires knowledge of Tailwind utility naming to modify later
 - **Breaking if changed:** If Tailwind CSS is removed or configuration changes, this styling breaks; color changes require understanding Tailwind's color scale (text-red-500 vs text-red-600)
+
+#### [Pattern] Color system migration using semantic Tailwind classes across component hierarchy (2026-03-12)
+- **Problem solved:** Changed hero section from red to orange color scheme by replacing all Tailwind color classes
+- **Why this works:** Tailwind CSS provides built-in color scales (red-*, orange-*) that maintain consistent design tokens across component variants. Using semantic class names allows batch replacement and ensures design coherence across all color intensities (100, 500, 600, 50).
+- **Trade-offs:** Mass find-replace is simple but couples component styling to framework class names; refactoring to CSS modules or styled-components would decouple but add complexity

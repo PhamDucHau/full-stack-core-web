@@ -5,9 +5,9 @@ relevantTo: [error, bug, fix, issue, problem]
 importance: 0.9
 relatedFiles: []
 usageStats:
-  loaded: 77
-  referenced: 46
-  successfulFeatures: 46
+  loaded: 78
+  referenced: 47
+  successfulFeatures: 47
 ---
 # Gotchas
 
@@ -81,3 +81,8 @@ Mistakes and edge cases to avoid. These are lessons learned from past issues.
 - **Situation:** When replacing yellow with cyan, both yellow-500 (lighter) and yellow-900 (darker) had to be found and replaced with their cyan equivalents to avoid visual inconsistency
 - **Root cause:** Tailwind's color system uses intensity suffixes that don't auto-update. A simple find-replace of 'yellow' to 'cyan' would work, but understanding the semantic meaning (background vs text contrast) prevents mistakes
 - **How to avoid:** Manual verification of each color level ensures correct contrast and visual hierarchy are maintained, but increases change complexity
+
+#### [Gotcha] Color consistency across multiple button states requires coordinated class updates (text color, hover state, contrast ratio) (2026-03-12)
+- **Situation:** Button had independent color classes for text (text-red-600) and hover (hover:bg-red-50) that needed synchronized updates
+- **Root cause:** CSS doesn't enforce relationships between semantically-linked classes. Changing text color without updating hover state creates visual inconsistency and fails accessibility contrast requirements.
+- **How to avoid:** Manual synchronization across 7 color class changes was tedious but guaranteed consistency. Alternatively, extracting to a color token system would require additional infrastructure.
