@@ -62,7 +62,7 @@ jobs:
               -e MONGODB_URI="${{ secrets.MONGODB_URI }}" \
               -e JWT_SECRET="${{ secrets.JWT_SECRET }}" \
               haupham2311/be-core-web-cms:latest \
-              node -e "const { setDefaultResultOrder } = require('node:dns'); setDefaultResultOrder('ipv4first'); require('./dist/main');"
+              node -e "const { setDefaultResultOrder } = require('node:dns'); setDefaultResultOrder('ipv4first'); require('/app/dist/src/main');"
 
             
             docker pull haupham2311/fe-core-web-cms:latest
