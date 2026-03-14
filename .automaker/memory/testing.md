@@ -155,3 +155,13 @@ usageStats:
 - **Situation:** Test specification didn't match implementation, suggesting either test was outdated or implementation diverged from requirements
 - **Root cause:** Discovered during update that the original test expected red but code was yellow - this mismatch means the test suite was already broken and wouldn't have caught the color change properly
 - **How to avoid:** Found and fixed test during implementation, but this reveals the test suite wasn't being actively maintained. Test-driven updates are safer than code-first changes
+
+#### [Gotcha] Test files must be updated alongside component changes - class-based assertions (toContain('bg-cyan-500')) become brittle when component implementation changes (2026-03-14)
+- **Situation:** Test expected cyan class but component was changed to yellow - test would fail if not updated
+- **Root cause:** Tests verify implementation details (specific CSS classes) rather than visual outcomes; this creates coupling between tests and styling strategy
+- **How to avoid:** Easier: fast, simple assertions; Harder: tests break with refactoring, doesn't verify actual rendered colors
+
+#### [Pattern] Test assertions mirror implementation changes: Updated Playwright test to verify `bg-pink-500` class instead of `bg-yellow-500`, keeping test assertions synchronized with component CSS (2026-03-14)
+- **Problem solved:** Color property verification tests need to validate the exact Tailwind classes present in the component
+- **Why this works:** Tests act as executable documentation and prevent regressions. If tests still check for yellow after implementation changed to pink, they would pass despite the feature being broken. Class-based assertions are appropriate for Tailwind CSS components.
+- **Trade-offs:** Class-based testing tightly couples tests to implementation details (Tailwind class names) but provides deterministic validation; computed style testing would be more flexible but less reliable

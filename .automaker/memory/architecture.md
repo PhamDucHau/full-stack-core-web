@@ -213,3 +213,10 @@ usageStats:
 - **Problem solved:** Locating hero section required searching through unknown file structure without knowing exact component location
 - **Why this works:** Progressive refinement reduces wasted searches. Starting with generic patterns (hero*, banner*) then narrowing with grep on file types (tsx, jsx, css, scss) avoids expensive full codebase scans. Task delegation to Explore agent for initial reconnaissance decouples discovery from modification.
 - **Trade-offs:** Multiple tool invocations increased latency but achieved high precision. Direct path assumption would be faster but fragile across project variations.
+
+### Used exploration-first approach (Glob + Bash searches) before making changes rather than direct file modification (2026-03-14)
+- **Context:** Multiple potential files could contain the banner component (HeroSection.tsx, various page files, CSS files)
+- **Why:** Prevents blind changes; discovering actual structure (landing/ directory, HeroSection.tsx specific location) reduces risk of partial updates
+- **Rejected:** Alternative: directly editing assumed file paths would work but risks missing related files (tests, related components, CSS)
+- **Trade-offs:** Easier: confident changes are complete; Harder: slower initial exploration phase
+- **Breaking if changed:** If repository structure changes, glob patterns would need adjustment; hard-coded file paths become stale

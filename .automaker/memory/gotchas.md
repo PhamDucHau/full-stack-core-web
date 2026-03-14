@@ -5,9 +5,9 @@ relevantTo: [error, bug, fix, issue, problem]
 importance: 0.9
 relatedFiles: []
 usageStats:
-  loaded: 86
-  referenced: 53
-  successfulFeatures: 53
+  loaded: 87
+  referenced: 54
+  successfulFeatures: 54
 ---
 # Gotchas
 
@@ -96,3 +96,8 @@ Mistakes and edge cases to avoid. These are lessons learned from past issues.
 - **Situation:** Implementation included comment documentation that explicitly referenced removed color names
 - **Root cause:** Stale comments create maintenance debt and developer confusion. Comments describing 'Red background' on yellow element violates principle of least surprise.
 - **How to avoid:** Updating comments increases change scope but prevents future confusion. Cost of inaccurate documentation accumulates.
+
+#### [Gotcha] Color references scattered across multiple class attributes and within strings require exhaustive search - a simple find-replace of 'yellow' to 'pink' could fail if color names appear in non-CSS contexts (comments, variable names, text content) (2026-03-14)
+- **Situation:** Implementation included verification grep to ensure no remaining yellow references, indicating awareness that color migrations are error-prone
+- **Root cause:** Text-based find-replace operations are brittle because CSS color tokens can appear in multiple forms (classNames, comments, variable names). The developer performed post-hoc verification to catch any missed occurrences.
+- **How to avoid:** Manual verification step adds overhead but provides confidence that the migration is complete; automated refactoring tools would be safer but require IDE support for Tailwind-specific renaming

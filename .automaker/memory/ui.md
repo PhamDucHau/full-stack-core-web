@@ -476,3 +476,20 @@ usageStats:
 - **Problem solved:** Multiple UI elements depend on primary brand color - buttons, text, overlays, hover states. A single color value change shouldn't require individual component updates
 - **Why this works:** Centralizing color strategy through Tailwind classes ensures consistency and makes future color changes maintainable. Button states (normal/hover) must coordinate with background to maintain accessibility
 - **Trade-offs:** Using Tailwind utilities requires knowing the color palette and how contrasts work, but eliminates hardcoded color values. More upfront thinking, less technical debt
+
+#### [Pattern] Color system uses Tailwind CSS utility classes with consistent variants (base color + intensity suffixes like -50, -100, -400, -500, -600) (2026-03-14)
+- **Problem solved:** Changing banner color from cyan to yellow required updating multiple related color variants across components and tests
+- **Why this works:** Tailwind's utility-first approach enforces consistency; using named variants (-100, -500, etc.) ensures all related shades change together, maintaining color harmony
+- **Trade-offs:** Easier: systematic color changes across files; Harder: color system locked into Tailwind's predefined palette
+
+#### [Pattern] Banner component uses layered background approach: base section with absolute positioned div overlay for pattern effects (2026-03-14)
+- **Problem solved:** HeroSection has both `bg-cyan-500` on section and `bg-cyan-500` on absolute inset-0 div
+- **Why this works:** Allows adding complex background patterns/textures without modifying base background; separation of concerns between layout and effects
+- **Trade-offs:** Easier: explicit div allows complex patterns; Harder: extra DOM element, position/z-index coordination needed
+
+### Color scheme migration strategy: Changed all yellow color references to pink across component, including primary background, text variants, button states, and hover effects in a single coordinated update (2026-03-14)
+- **Context:** Converting hero section from yellow to pink branding required updating multiple Tailwind color classes across different text and interactive elements
+- **Why:** Using a consistent color palette (pink-500, pink-100, pink-600, pink-50, pink-400) ensures visual cohesion and prevents accidental color mismatches. Single batch update reduces risk of partial migrations.
+- **Rejected:** Piecemeal updates without coordinating all related color references would leave inconsistent styling (e.g., button hover state still yellow while background is pink)
+- **Trade-offs:** Single coordinated update requires reading full component first to identify all color references, but prevents visual inconsistencies and reduces future maintenance burden
+- **Breaking if changed:** If button hover colors don't match the primary background palette (pink-400 hover on pink background), the UI appears visually disconnected and unprofessional
