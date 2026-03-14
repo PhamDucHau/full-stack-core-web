@@ -3,6 +3,8 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+RUN apk add --no-cache ca-certificates
+
 # Tránh yarn dùng /tmp (dễ gây EIO trong Docker), dùng thư mục trong /app
 ENV TMPDIR=/app/.tmp
 ENV YARN_CACHE_FOLDER=/app/.yarn-cache
