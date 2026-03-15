@@ -234,3 +234,8 @@ usageStats:
 - **Rejected:** Creating design tokens/theme configuration (would be premature optimization if only one component affected); using CSS-in-JS with dynamic theme object
 - **Trade-offs:** Quick implementation vs. scalability - easy now, but creates technical debt if brand colors need to change across multiple components later
 - **Breaking if changed:** If this pattern spreads (colors hardcoded in multiple components), achieving consistent branding becomes exponentially harder; each component becomes a separate point of maintenance
+
+#### [Pattern] Component-level color coupling - all color changes concentrated in single HeroSection.tsx component with no external color configuration or theme file (2026-03-15)
+- **Problem solved:** Banner color is hardcoded via Tailwind classes directly in component markup
+- **Why this works:** For simple single-component styling, inline Tailwind classes are sufficient and don't require theme abstraction overhead
+- **Trade-offs:** Simplicity and locality vs difficulty scaling if multiple sections need the same color or if colors change frequently

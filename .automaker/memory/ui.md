@@ -510,3 +510,8 @@ usageStats:
 - **Problem solved:** Hero section color scheme needed to be updated from cyan/blue to red across multiple UI elements
 - **Why this works:** Direct Tailwind class manipulation is straightforward for single-component changes and requires no additional infrastructure. Trade-off: doesn't support dynamic runtime theme switching without re-rendering or CSS-in-JS
 - **Trade-offs:** Simple for static themes, but fragile for multi-component theme changes - requires manual grep/replace across codebase rather than single source of truth
+
+#### [Pattern] Complete color palette replacement using Tailwind's color variants (500, 600, 700, 100, 50) across all related elements (2026-03-15)
+- **Problem solved:** Changing banner color from red to cyan required updating background, gradient, text, and button states consistently
+- **Why this works:** Using the same color family (cyan-*) across all variants ensures visual consistency and makes future color changes easier. Each variant serves a specific purpose: 600 for main background, 500/700 for gradient depth, 100 for secondary text, 50 for hover states
+- **Trade-offs:** Constraint to Tailwind's predefined color palette vs complete design freedom; easier maintenance and consistency vs less customization flexibility

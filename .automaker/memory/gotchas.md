@@ -5,9 +5,9 @@ relevantTo: [error, bug, fix, issue, problem]
 importance: 0.9
 relatedFiles: []
 usageStats:
-  loaded: 91
-  referenced: 57
-  successfulFeatures: 57
+  loaded: 92
+  referenced: 58
+  successfulFeatures: 58
 ---
 # Gotchas
 
@@ -111,3 +111,8 @@ Mistakes and edge cases to avoid. These are lessons learned from past issues.
 - **Situation:** Comments describing visual appearance can become outdated when styling changes
 - **Root cause:** Comments were treated as pure documentation rather than as semantic code requiring updates alongside implementation
 - **How to avoid:** Updated comment increases maintenance burden but improves code clarity; alternative is lower clarity but less work per change
+
+#### [Gotcha] Button hover states must coordinate with main color scheme - secondary button hover changed from `hover:bg-red-500` to `hover:bg-cyan-500` to maintain visual hierarchy (2026-03-15)
+- **Situation:** Secondary 'About Us' button needed hover state update that wasn't immediately obvious since it uses variant='outline'
+- **Root cause:** Outline buttons with colored backgrounds need hover backgrounds that match the primary color scheme for consistent interaction feedback
+- **How to avoid:** More changes required throughout component vs cleaner final appearance; increased update surface area
