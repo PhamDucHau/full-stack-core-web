@@ -239,3 +239,8 @@ usageStats:
 - **Problem solved:** Banner color is hardcoded via Tailwind classes directly in component markup
 - **Why this works:** For simple single-component styling, inline Tailwind classes are sufficient and don't require theme abstraction overhead
 - **Trade-offs:** Simplicity and locality vs difficulty scaling if multiple sections need the same color or if colors change frequently
+
+#### [Pattern] Button styling follows component-level theming where buttons inherit color context (primary: white with yellow text, secondary: transparent with yellow borders) rather than being color-agnostic (2026-03-15)
+- **Problem solved:** Multiple buttons exist in hero section with different visual weights but all need to feel part of yellow theme
+- **Why this works:** Contextual button styling ensures visual cohesion without requiring prop drilling or context providers; buttons communicate their relationship to the section through color coordination
+- **Trade-offs:** Simpler implementation without context/theming system, but creates tight coupling between hero section styling and button appearance. Future theme changes require finding all button instances

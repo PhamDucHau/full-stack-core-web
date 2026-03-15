@@ -172,3 +172,10 @@ usageStats:
 - **Rejected:** Testing computed RGB/hex values would require browser rendering and is fragile across different rendering engines
 - **Trade-offs:** Class-based testing is simpler to write and maintain but doesn't catch CSS file corruption. It assumes Tailwind is working correctly
 - **Breaking if changed:** If testing switches to color property verification, any browser rendering differences or CSS compilation issues would surface as test failures
+
+### Test uses className attribute matching (`expect(className).toContain('bg-pink-500')`) rather than computed style verification (2026-03-15)
+- **Context:** Playwright test verifies banner color by checking for presence of Tailwind class in the DOM rather than checking actual computed CSS color value
+- **Why:** Class-based assertion is simpler and doesn't require browser's CSS engine to compute final styles; works reliably with Tailwind's utility classes
+- **Rejected:** Using `getComputedStyle()` would be more robust but requires browser style computation and is harder to maintain when theme changes
+- **Trade-offs:** Class matching is faster and more maintainable but couples tests to implementation details (Tailwind class names); computed styles would be implementation-agnostic but slower
+- **Breaking if changed:** If class name is renamed or CSS framework changes, test fails even if visual appearance is correct; class attribute assertion is brittle to refactoring

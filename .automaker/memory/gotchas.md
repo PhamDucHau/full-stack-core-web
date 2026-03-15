@@ -5,9 +5,9 @@ relevantTo: [error, bug, fix, issue, problem]
 importance: 0.9
 relatedFiles: []
 usageStats:
-  loaded: 93
-  referenced: 59
-  successfulFeatures: 59
+  loaded: 103
+  referenced: 61
+  successfulFeatures: 61
 ---
 # Gotchas
 
@@ -116,3 +116,8 @@ Mistakes and edge cases to avoid. These are lessons learned from past issues.
 - **Situation:** Secondary 'About Us' button needed hover state update that wasn't immediately obvious since it uses variant='outline'
 - **Root cause:** Outline buttons with colored backgrounds need hover backgrounds that match the primary color scheme for consistent interaction feedback
 - **How to avoid:** More changes required throughout component vs cleaner final appearance; increased update surface area
+
+#### [Gotcha] Gradient overlay and background color must both be updated - changing only the base color while leaving gradient creates visual inconsistency (2026-03-15)
+- **Situation:** Hero section uses both `bg-yellow-500` base class and `bg-gradient-to-br from-yellow-400 to-yellow-600` overlay, requiring coordinated updates
+- **Root cause:** The gradient overlay sits on top of the base color and should harmonize with it; mismatched colors create jarring visual transitions
+- **How to avoid:** Matching gradient to base requires more changes but ensures visual cohesion; separate gradient could add design flexibility but increases complexity

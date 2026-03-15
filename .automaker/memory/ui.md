@@ -527,3 +527,18 @@ usageStats:
 - **Rejected:** Using yellow-300 to yellow-500 (too flat), or yellow-500 to yellow-800 (makes background too dark and defeats the purpose of switching to yellow)
 - **Trade-offs:** Subtle gradient adds complexity but solves the tension between wanting a bright yellow banner and needing readable text. A solid yellow-500 would be simpler but less visually appealing
 - **Breaking if changed:** If gradient is removed or inverted (dark to light), the background becomes either monotonous or changes the color perception entirely
+
+#### [Gotcha] Feature request to change banner color to yellow was already implemented - discovered through code inspection that hero section was fully using yellow theme (bg-yellow-500, gradients, text colors) (2026-03-15)
+- **Situation:** Developer requested 'Đổi màu banner' (change banner color) but implementation already existed, requiring investigation to confirm rather than new implementation
+- **Root cause:** The exploration strategy of glob + grep + read discovered existing implementation, preventing duplicate work and unnecessary refactoring
+- **How to avoid:** Upfront investigation cost prevented wasted development time; however, lack of communication about completion created confusion requiring verification
+
+#### [Pattern] Used Tailwind CSS color scale (yellow-400, yellow-500, yellow-600) with gradient overlay and coordinated text colors (yellow-900) for contrast instead of custom CSS or hardcoded hex values (2026-03-15)
+- **Problem solved:** Multiple color values needed to be coordinated across section background, overlays, text, and interactive elements
+- **Why this works:** Tailwind's semantic color system ensures consistency, maintainability, and accessibility (semantic naming communicates intent). Gradient + base color + dark text layer creates visual depth and maintains WCAG contrast ratios automatically
+- **Trade-offs:** Easier maintenance and accessibility trade for less fine-tuned control over exact color values; however, Tailwind scale provides sufficient granularity for most use cases
+
+#### [Pattern] Color scheme changes require synchronized updates across component classes, gradient overlays, text colors, button states, and test assertions (2026-03-15)
+- **Problem solved:** Changing hero banner from yellow to pink required updates in 9+ different Tailwind color references across a single component plus corresponding test file
+- **Why this works:** Tailwind CSS doesn't provide a centralized color variable system - colors are applied via class names throughout the component, making bulk color changes error-prone
+- **Trade-offs:** Utility-first approach is easier for quick styling but harder for theme-wide color changes; centralized variables would add complexity but improve maintainability for color scheme overhauls
