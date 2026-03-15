@@ -244,3 +244,8 @@ usageStats:
 - **Problem solved:** Multiple buttons exist in hero section with different visual weights but all need to feel part of yellow theme
 - **Why this works:** Contextual button styling ensures visual cohesion without requiring prop drilling or context providers; buttons communicate their relationship to the section through color coordination
 - **Trade-offs:** Simpler implementation without context/theming system, but creates tight coupling between hero section styling and button appearance. Future theme changes require finding all button instances
+
+#### [Gotcha] Design system colors coupled directly into component className strings rather than extracted to centralized theme/palette variables (2026-03-15)
+- **Situation:** Hero section hardcodes Tailwind color names (violet-400, violet-500, etc.) making color scheme changes require editing component JSX rather than configuration
+- **Root cause:** Direct Tailwind usage is convenient for rapid development but creates brittleness for design system changes
+- **How to avoid:** Speed of initial implementation vs. maintainability of future brand/design changes; no IDE refactoring support for color name changes

@@ -542,3 +542,13 @@ usageStats:
 - **Problem solved:** Changing hero banner from yellow to pink required updates in 9+ different Tailwind color references across a single component plus corresponding test file
 - **Why this works:** Tailwind CSS doesn't provide a centralized color variable system - colors are applied via class names throughout the component, making bulk color changes error-prone
 - **Trade-offs:** Utility-first approach is easier for quick styling but harder for theme-wide color changes; centralized variables would add complexity but improve maintainability for color scheme overhauls
+
+#### [Pattern] Systematic color palette replacement across all related UI elements (background, gradient, button states, hover effects) (2026-03-15)
+- **Problem solved:** Changing hero section from pink to violet required updating 5 different color references scattered across the component
+- **Why this works:** UI consistency requires that color changes propagate through all dependent states (base, hover, focus, disabled) to maintain visual coherence and brand consistency
+- **Trade-offs:** More verbose component code with repeated color tokens vs. risk of inconsistent UI states; Tailwind classes make this explicit but harder to refactor later
+
+#### [Pattern] Gradient overlays applied as absolute-positioned pseudo-layers (inset-0) with relative positioning on content to ensure overlays don't interfere with interactivity (2026-03-15)
+- **Problem solved:** Hero section background required both solid color and gradient overlay without blocking button clicks or text selection
+- **Why this works:** Absolute positioning with inset-0 creates a stacking context that overlays don't interfere with interactive elements or text flow
+- **Trade-offs:** Slightly more DOM elements and CSS complexity vs. simpler styling but more performant and flexible for future animations
