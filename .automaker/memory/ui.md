@@ -493,3 +493,15 @@ usageStats:
 - **Rejected:** Piecemeal updates without coordinating all related color references would leave inconsistent styling (e.g., button hover state still yellow while background is pink)
 - **Trade-offs:** Single coordinated update requires reading full component first to identify all color references, but prevents visual inconsistencies and reduces future maintenance burden
 - **Breaking if changed:** If button hover colors don't match the primary background palette (pink-400 hover on pink background), the UI appears visually disconnected and unprofessional
+
+### Used Tailwind CSS gradient (bg-gradient-to-br from-cyan-500 to-blue-600) instead of flat color (2026-03-14)
+- **Context:** Banner color change from pink to sea blue required visual depth
+- **Why:** Gradient adds visual hierarchy and perceived depth while maintaining brand consistency. Flat colors appear dated; gradients provide professional appearance without custom CSS
+- **Rejected:** Flat bg-cyan-600 alone - lacks visual interest
+- **Trade-offs:** Gradient adds subtle visual complexity but improves UI polish; requires understanding gradient direction (to-br = top-left to bottom-right)
+- **Breaking if changed:** Removing gradient reverts to flat appearance, losing depth effect; changing direction (e.g., to-t) breaks intended diagonal flow
+
+#### [Pattern] Consistent color variant strategy: primary brand color (cyan-600) with lighter variant (cyan-100) for text and cyan-50/cyan-500 for hover states (2026-03-14)
+- **Problem solved:** Multiple UI elements (text, buttons, hover states) needed coordinated color theming
+- **Why this works:** Tailwind's color scale (50, 100, 500, 600) provides built-in contrast ratios that ensure accessibility and visual hierarchy without custom values. Each shade serves a semantic purpose: darker for primary, lighter for secondary text
+- **Trade-offs:** Limited to Tailwind's predefined palette but guarantees WCAG compliance; faster implementation than custom color systems

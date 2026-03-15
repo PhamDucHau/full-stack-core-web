@@ -5,9 +5,9 @@ relevantTo: [error, bug, fix, issue, problem]
 importance: 0.9
 relatedFiles: []
 usageStats:
-  loaded: 89
-  referenced: 55
-  successfulFeatures: 55
+  loaded: 90
+  referenced: 56
+  successfulFeatures: 56
 ---
 # Gotchas
 
@@ -101,3 +101,8 @@ Mistakes and edge cases to avoid. These are lessons learned from past issues.
 - **Situation:** Implementation included verification grep to ensure no remaining yellow references, indicating awareness that color migrations are error-prone
 - **Root cause:** Text-based find-replace operations are brittle because CSS color tokens can appear in multiple forms (classNames, comments, variable names). The developer performed post-hoc verification to catch any missed occurrences.
 - **How to avoid:** Manual verification step adds overhead but provides confidence that the migration is complete; automated refactoring tools would be safer but require IDE support for Tailwind-specific renaming
+
+#### [Gotcha] Hover state color must coordinate with background gradient, not just primary color (2026-03-14)
+- **Situation:** Button hover state (hover:bg-cyan-500) needs to work over gradient background (cyan-500 to blue-600)
+- **Root cause:** Gradient changes visual appearance across banner height; hover states must account for varying background luminosity to maintain readability
+- **How to avoid:** Requires testing hover states at different vertical positions; guarantees readability but adds validation step

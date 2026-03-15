@@ -220,3 +220,10 @@ usageStats:
 - **Rejected:** Alternative: directly editing assumed file paths would work but risks missing related files (tests, related components, CSS)
 - **Trade-offs:** Easier: confident changes are complete; Harder: slower initial exploration phase
 - **Breaking if changed:** If repository structure changes, glob patterns would need adjustment; hard-coded file paths become stale
+
+### Maintained component-level Tailwind classes instead of extracting to CSS variables or theme system (2026-03-14)
+- **Context:** Color changes required updating multiple Tailwind class strings in single component
+- **Why:** For single component theming, inline Tailwind classes are sufficient and keep logic co-located. Extracting to theme system adds indirection overhead for simple color swaps
+- **Rejected:** Creating CSS custom properties (--banner-color) or Tailwind theme config would be over-engineering for single-component change
+- **Trade-offs:** Easier to implement and understand now; harder to scale if multiple components need same color scheme later
+- **Breaking if changed:** If future requirement demands consistent color changes across 5+ components, current approach requires 5+ separate edits; would need theme system refactor
