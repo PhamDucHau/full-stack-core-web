@@ -515,3 +515,15 @@ usageStats:
 - **Problem solved:** Changing banner color from red to cyan required updating background, gradient, text, and button states consistently
 - **Why this works:** Using the same color family (cyan-*) across all variants ensures visual consistency and makes future color changes easier. Each variant serves a specific purpose: 600 for main background, 500/700 for gradient depth, 100 for secondary text, 50 for hover states
 - **Trade-offs:** Constraint to Tailwind's predefined color palette vs complete design freedom; easier maintenance and consistency vs less customization flexibility
+
+#### [Gotcha] Text color must be inverted when changing banner background from dark cyan to light yellow - changed from white/cyan-100 to yellow-900 (2026-03-15)
+- **Situation:** Changing hero section banner color from cyan-600 to yellow-500 without adjusting text colors would result in unreadable yellow-on-yellow contrast
+- **Root cause:** Yellow-500 is a much lighter color than cyan-600. White text works on dark cyan but fails on light yellow. Dark text (yellow-900) is required for accessible contrast ratios
+- **How to avoid:** Yellow-900 text is less visually striking than white, but the trade-off for accessibility and readability is mandatory. Cannot achieve bright yellow banner with bright yellow text
+
+### Used asymmetric gradient (yellow-400 to yellow-600) rather than darker variants for depth on light background (2026-03-15)
+- **Context:** Creating visual depth on a light yellow banner that must maintain text legibility
+- **Why:** Light backgrounds need subtle gradients to create dimension. A darker gradient (e.g., yellow-300 to yellow-800) would either flatten the design or reduce contrast. Yellow-400 to 600 maintains visual interest while keeping the overall surface light enough for dark text
+- **Rejected:** Using yellow-300 to yellow-500 (too flat), or yellow-500 to yellow-800 (makes background too dark and defeats the purpose of switching to yellow)
+- **Trade-offs:** Subtle gradient adds complexity but solves the tension between wanting a bright yellow banner and needing readable text. A solid yellow-500 would be simpler but less visually appealing
+- **Breaking if changed:** If gradient is removed or inverted (dark to light), the background becomes either monotonous or changes the color perception entirely

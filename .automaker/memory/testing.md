@@ -165,3 +165,10 @@ usageStats:
 - **Problem solved:** Color property verification tests need to validate the exact Tailwind classes present in the component
 - **Why this works:** Tests act as executable documentation and prevent regressions. If tests still check for yellow after implementation changed to pink, they would pass despite the feature being broken. Class-based assertions are appropriate for Tailwind CSS components.
 - **Trade-offs:** Class-based testing tightly couples tests to implementation details (Tailwind class names) but provides deterministic validation; computed style testing would be more flexible but less reliable
+
+### Test verifies presence of CSS class in DOM (bg-yellow-500) rather than computed CSS color property (2026-03-15)
+- **Context:** Banner color verification test had to be updated when color changed
+- **Why:** CSS class verification is more robust than computed color checks because: (1) it's deterministic regardless of browser rendering differences, (2) it directly verifies the developer's intent, (3) Tailwind classes are the contract in this codebase
+- **Rejected:** Testing computed RGB/hex values would require browser rendering and is fragile across different rendering engines
+- **Trade-offs:** Class-based testing is simpler to write and maintain but doesn't catch CSS file corruption. It assumes Tailwind is working correctly
+- **Breaking if changed:** If testing switches to color property verification, any browser rendering differences or CSS compilation issues would surface as test failures
