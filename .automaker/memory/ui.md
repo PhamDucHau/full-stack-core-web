@@ -574,3 +574,15 @@ usageStats:
 - **Rejected:** Changing text to dark color (e.g., text-gray-900) would maintain contrast but break the light-on-dark aesthetic of the original design
 - **Trade-offs:** White text works aesthetically but requires verification that yellow-500 meets WCAG AA minimum 4.5:1 contrast ratio. Dark text would guarantee accessibility but change the design intent
 - **Breaking if changed:** If WCAG contrast validation fails for white-on-yellow, users with low vision cannot read the banner content, creating accessibility failure
+
+#### [Pattern] Used Tailwind CSS color palette substitution approach for theme changes rather than CSS variables or component props (2026-03-16)
+- **Problem solved:** Changing hero section banner from yellow to red across multiple UI elements
+- **Why this works:** Direct find-and-replace in className strings is straightforward for one-off color changes in small component scopes
+- **Trade-offs:** Easier for isolated changes but creates maintainability debt if colors need to change again; no single source of truth for the color scheme
+
+### Button hover states use progressively lighter shades of the new color (red-400, red-50) rather than inverted or complementary colors (2026-03-16)
+- **Context:** Two buttons with different hover effects: white button with red text hovers to red-50 background, outline button hovers to red-400
+- **Why:** Maintains button visual hierarchy and accessibility contrast ratios; lighter shades suggest interactivity while keeping user within color family
+- **Rejected:** Inverted colors or complementary palette would break visual cohesion; darker shades would reduce contrast with text
+- **Trade-offs:** Simpler to implement and understand than computed hover states, but limits design flexibility if hover effects need to be more dramatic
+- **Breaking if changed:** If hover color lightness is reversed or changed to unrelated palette, buttons lose affordance clarity or fail WCAG contrast requirements

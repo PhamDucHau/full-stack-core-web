@@ -259,3 +259,8 @@ usageStats:
 - **Situation:** Hero section used gradient overlay (from-red-400 to-red-600) on top of base bg-red-500, creating a layered color effect
 - **Root cause:** Tailwind's gradient requires explicit color stops. Using consistent yellow shades (400-500-600) maintains the intended depth hierarchy. Mismatched shades (e.g., 400 to 700) would create jarring visual jumps
 - **How to avoid:** Gradient overlays add visual sophistication but require coordinating multiple color values. Removing gradient simplifies maintenance but reduces visual impact
+
+#### [Gotcha] Gradient overlay uses two color stops (from-red-400 to-red-600) that must both be updated together for visual consistency (2026-03-16)
+- **Situation:** Changing gradient from yellow-400→yellow-600 to red-400→red-600
+- **Root cause:** Gradients create depth and visual hierarchy; if only one stop is changed, the overlay becomes muddy or visually jarring
+- **How to avoid:** More changes required but ensures visual coherence across all color variations in the component
