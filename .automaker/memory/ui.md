@@ -596,3 +596,8 @@ usageStats:
 - **Problem solved:** HeroSection uses both 'bg-yellow-500' on the section and 'absolute inset-0 bg-gradient-to-br from-yellow-400 to-yellow-600' on a child div
 - **Why this works:** The absolute positioned gradient div covers the base color completely, making the section's bg-yellow-500 invisible. This pattern allows the base color to be a fallback/fallback or supports responsive behavior where gradient might be disabled
 - **Trade-offs:** Extra div and duplicate color definition costs minimal performance but adds code complexity. Makes it clearer what the fallback color is during render states
+
+#### [Pattern] Used Tailwind CSS color palette consistency across related UI elements (background, gradient overlay, button text, hover states) (2026-03-23)
+- **Problem solved:** Changing hero section from yellow to cyan theme required updating multiple color references across the component
+- **Why this works:** Maintaining visual coherence across interactive and static elements prevents jarring color mismatches and ensures the theme is applied consistently. Gradient overlays (cyan-400 to cyan-600) provide depth that flat colors alone cannot achieve
+- **Trade-offs:** Tailwind approach is more maintainable within the component but scales poorly if theme changes become frequent; would benefit from CSS variables or theme provider at higher frequency

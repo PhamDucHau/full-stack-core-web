@@ -5,9 +5,9 @@ relevantTo: [error, bug, fix, issue, problem]
 importance: 0.9
 relatedFiles: []
 usageStats:
-  loaded: 110
-  referenced: 66
-  successfulFeatures: 66
+  loaded: 116
+  referenced: 67
+  successfulFeatures: 67
 ---
 # Gotchas
 
@@ -121,3 +121,8 @@ Mistakes and edge cases to avoid. These are lessons learned from past issues.
 - **Situation:** Hero section uses both `bg-yellow-500` base class and `bg-gradient-to-br from-yellow-400 to-yellow-600` overlay, requiring coordinated updates
 - **Root cause:** The gradient overlay sits on top of the base color and should harmonize with it; mismatched colors create jarring visual transitions
 - **How to avoid:** Matching gradient to base requires more changes but ensures visual cohesion; separate gradient could add design flexibility but increases complexity
+
+#### [Gotcha] Button hover state styling requires careful coordination with both foreground and background colors from the parent theme (2026-03-23)
+- **Situation:** Secondary button hover state changed from `hover:bg-yellow-400` to `hover:bg-cyan-400` to maintain visual consistency with primary button
+- **Root cause:** Hover states that don't align with the primary theme color create cognitive dissonance for users; the interaction feedback becomes disconnected from the visual identity
+- **How to avoid:** Coordinated theming ensures consistency but requires careful attention when multiple interactive elements exist in the same component

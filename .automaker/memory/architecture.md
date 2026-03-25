@@ -264,3 +264,10 @@ usageStats:
 - **Situation:** Changing gradient from yellow-400→yellow-600 to red-400→red-600
 - **Root cause:** Gradients create depth and visual hierarchy; if only one stop is changed, the overlay becomes muddy or visually jarring
 - **How to avoid:** More changes required but ensures visual coherence across all color variations in the component
+
+### Applied color changes directly in component markup rather than extracting to theme configuration or constants (2026-03-23)
+- **Context:** Hero section color transformation required changes in 5 separate className locations within HeroSection.tsx
+- **Why:** Pragmatic approach for single-component theme updates; avoids over-engineering for one-off changes
+- **Rejected:** Creating a theme context provider or CSS-in-JS solution - would be premature optimization for a localized change
+- **Trade-offs:** Easier to implement immediately but harder to maintain if similar color schemes needed elsewhere; future color changes require multiple edits in same file
+- **Breaking if changed:** If hero section theme needs to be reusable across multiple components, the hardcoded values become a maintenance liability requiring extraction to shared configuration
